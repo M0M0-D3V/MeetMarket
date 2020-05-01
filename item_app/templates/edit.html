@@ -1,0 +1,124 @@
+{% extends 'base.html' %} {% block content %}{% if this_user.admin == True %}
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="/dashboard">Craiglist</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/admin_controls">Admin Controls<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/all_listings">All Items Listings<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/dashboard">Dashboard<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/direct_message">Direct Messages<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+        <li class="nav-item active">
+          <a class="nav-link" href="/new_item">New Listing<span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+      <a class="btn btn-sm btn-outline-secondary" href="/logout"">Log Out</a>
+      <!-- <form class=" form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form> -->
+    </div>
+  </nav>
+  <!-- end of navbar -->
+
+
+  <h1 style="padding-top: 30px; margin-top:70px">Edit {{this_item.name}} </h1>
+  <hr>
+
+
+
+<!--
+<a href="/admin_controls" class="btn btn-danger" role="button">Admin Controls</a
+>{% endif %}
+<a href="/dashboard">Dashboard</a>
+<a href="/direct_message">Direct Message</a>
+<a href="/new_item">New Listing</a>
+<a href="/logout">Log Out</a>
+<h1>Edit {{this_item.name}}</h1> -->
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+    {{ message }}
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+<form
+  action="/post_edit/{{this_item.id}}"
+  method="POST"
+  enctype="multipart/form-data"
+>
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="name">Name of Listing:</label>
+    <input
+      type="text"
+      class="form-control"
+      name="name"
+      value="{{this_item.name}}"
+    />
+    <label for="price">Price:</label>
+    <input
+      type="number"
+      step="0.01"
+      class="form-control"
+      name="price"
+      value="{{this_item.price}}"
+    />
+    <label for="description">Description:</label>
+    <textarea name="description" class="form-control">
+{{this_item.description}}</textarea
+    >
+    <label for="location">Location:</label>
+    <input
+      type="text"
+      class="form-control"
+      name="location"
+      placeholder="Current location of the item"
+      value="{{this_item.location}}"
+    />
+    <label for="condition">Condition:</label>
+    <input
+      type="text"
+      class="form-control"
+      name="condition"
+      placeholder="Mint, Great, Fair, Bad, etc.."
+      value="{{this_item.condition}}"
+    />
+    <label for="category">Category:</label>
+    <select name="category" class="custom-select mr-sm-2">
+      <option value="{{this_item.category.name}}"
+        >{{this_item.category.name}}</option
+      >
+      {% for category in all_categories %}
+      <option value="{{category.name}}">{{category.name}}</option>
+      {% endfor %}
+    </select>
+    {% if not image %}
+    <label for="images">Upload Image:</label>
+    <input type="file" name="images" value="{{image}}" />
+    {% endif %}
+    <button type="submit" class="btn btn-primary">Edit</button>
+    <a href="/dashboard" class="btn btn-info" role="button">Cancel</a>
+    {% if this_user.admin == True %}
+    <a href="/delete{{this_item.id}}" class="btn btn-danger" role="button"
+      >Delete</a
+    >{% endif %}
+  </div>
+</form>
+{% endblock %}

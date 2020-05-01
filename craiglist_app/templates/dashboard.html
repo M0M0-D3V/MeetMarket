@@ -1,0 +1,157 @@
+{% extends 'base.html' %} {% block content %}
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="/dashboard">Craiglist</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+    aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <li class="nav-item active">
+          <a class="nav-link" href="/admin_controls">Admin Controls<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/all_listings">All Item Listings<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Dashboard</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/direct_message">Direct Messages<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/new_item">New Listing<span class="sr-only">(current)</span></a>
+        </li>
+    </ul>
+    <a class="btn btn-sm btn-outline-secondary" href="/logout"">Log Out</a>
+      <!-- <form class=" form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form> -->
+  </div>
+</nav>
+
+<!-- end of navbar -->
+<!--
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/dashboard">New</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/dashboard"
+          >Home <span class="sr-only">(current)</span></a
+        >
+      </li>
+      {% if user_admin == True %}
+      <li class="nav-item">
+        <a class="nav-link" href="/admin_controls">Admin Controls</a>
+      </li>
+      {% endif %}
+      <li class="nav-item">
+        <a class="nav-link" href="/all_listings">All Item Listings</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/direct_message">Direct Message</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/new_item">New Listing</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav> -->
+<!-- <a href="/admin_controls" class="btn btn-danger" role="button">Admin Controls</a
+> <a href="/all_listings">All Item Listings</a> &#124;
+<a href="/direct_message">Direct Message</a> &#124;
+<a href="/new_item">New Listing</a> &#124;
+<a href="/logout">Log Out</a> -->
+
+<main role="main">
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4" style="padding: 20px; margin-top: 20px;">Welcome {{user_first_name}}!</h1>
+    <p class="lead">Feel free to browse or click above to add your own listing!</p>
+  </div>
+  <hr>
+</main>
+<!--
+<h1 class="page-header">Welcome {{user_first_name}}!</h1>
+<p>Feel free to browse or click above to add your own listing!</p> -->
+<div class="row">
+  <div class="col-md-12">
+    <p class="lead">Recently added to categories:</p>
+  </div>
+</div>
+
+<div class="row">
+<div class="col-md-4 form-group">
+  <h4 class="form-control">
+    <a href="/category/{{last_3category.0.id}}">{{last_3category.0.name}}</a>
+  </h4>
+  {% for item in last_cat_last_3items %}
+  <p class="form-control">
+    {% for image in item.images.all %}
+    <img class="img-fluid thumbnail" src="{{image.image.url}}" />
+    {% endfor %}
+    <a href="/item/{{item.id}}">{{item.name}}</a> - ${{item.price}}<br />
+    {% if user_admin == True %} |
+    <a href="/item/{{item.id}}/edit">Edit</a> |
+    <a href="/item/{{item.id}}/delete" class="danger">Delete</a>{% endif %}
+  </p>
+  {% endfor %}
+</div>
+
+  <div class="col-md-4 form-group">
+    <h4 class="form-control">
+      <a href="/category/{{last_3category.1.id}}">{{last_3category.1.name}}</a>
+    </h4>
+    {% for item in seclast_cat_last_3items %}
+    <p class="form-control">
+      {% for image in item.images.all %}
+      <img class="img-fluid thumbnail" src="{{image.image.url}}" />
+      {% endfor %}
+      <a href="/item/{{item.id}}">{{item.name}}</a> - ${{item.price}}<br />
+      {% if user_admin == True %} |
+      <a href="/item/{{item.id}}/edit">Edit</a> |
+      <a href="/item/{{item.id}}/delete" class="danger">Delete</a>{% endif %}
+    </p>
+    {% endfor %}
+  </div>
+  <div class="col-md-4 form-group">
+    <h4 class="form-control">
+      <a href="/category/{{last_3category.2.id}}">{{last_3category.2.name}}</a>
+    </h4>
+    {% for item in thirdlast_cat_last_3items %}
+    <p class="form-control">
+      {% for image in item.images.all %}
+      <img class="img-fluid" src="{{image.image.url}}" />
+      {% endfor %}
+      <a href="/item/{{item.id}}">{{item.name}}</a> - ${{item.price}} <br>
+      {% if user_admin == True %} |
+        <!-- <div class="btn-group">
+          <a href="/item/{{item.id}}/edit" class="btn btn-sm btn-outline-secondary" role="button">Edit</a>
+          <a href="/item/{{item.id}}/delete" class="btn btn-sm btn-outline-secondary" role="button">Delete</a>
+        </div> -->
+      <a href="/item/{{item.id}}/edit">Edit</a> |
+      <a href="/item/{{item.id}}/delete">Delete</a>{% endif %}
+    </p>
+    {% endfor %}
+  </div>
+</div>
+</div>
+
+{% endblock %}
