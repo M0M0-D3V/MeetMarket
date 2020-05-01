@@ -17,4 +17,5 @@ urlpatterns = [
     path('all_listings', views.all_listings),
     path('flag_item/<int:item_id>', views.flag_item),
     path('admin_flag_control/<int:item_id>', views.admin_flag_control),
+    path('all_categories', views.all_categories),
 ]

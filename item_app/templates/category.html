@@ -1,10 +1,4 @@
-{% extends 'base.html' %} {% block content %} {% if user_admin == True %}
-<!-- <a href="/admin_controls" class="btn btn-danger" role="button">Admin Controls</a
->{% endif %} <a href="/dashboard">Dashboard</a> &#124;
-<a href="/all_listings">All Item Listings</a> &#124;
-<a href="/direct_message">Direct Message</a> &#124;
-<a href="/new_item">New Listing</a> &#124;
-<a href="/logout">Log Out</a> -->
+{% extends 'base.html' %} {% block content %}
 
 <body>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -16,17 +10,16 @@
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
+        {% if user_admin == True %}
         <li class="nav-item active">
           <a class="nav-link" href="/admin_controls">Admin Controls<span class="sr-only">(current)</span></a>
         </li>
+        {% endif %}
         <li class="nav-item active">
           <a class="nav-link" href="/all_listings">All Items Listings<span class="sr-only">(current)</span></a>
         </li>
-        <!-- <li class="nav-item active">
-          <a class="nav-link" href="/dashboard">Dashboard<span class="sr-only">(current)</span></a>
-        </li> -->
         <li class="nav-item active">
-          <a class="nav-link" href="/direct_message">Direct Messages<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/all_categories">All Categories<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
         <li class="nav-item active">

@@ -1,5 +1,10 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Register</h1>
+<main role="main">
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4" style="padding: 20px; margin-top: 20px;">Register</h1>
+  </div>
+  <hr />
+</main>
 
 {% if messages %}
 <ul class="messages">
@@ -38,9 +43,10 @@
   </div>
   <button type="submit" class="btn btn-primary">Register!</button>
 </form>
+<br />
 <a href="/">Have an account? Click here to login!</a>
 
-  <!-- <body class="text-center">
+<!-- <body class="text-center">
     <form class="form-signin">
       <img class="mb-4" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Please sign up!</h1>

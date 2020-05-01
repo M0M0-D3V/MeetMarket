@@ -99,6 +99,7 @@ def successful_log_in(request):
             "seclast_cat_last_3items": items_reversed_secondlast_cat[0:3],
             "thirdlast_cat_last_3items": items_reversed_thirdlast_cat[0:3],
             # good golly that was painful...
+            "this_user": User.objects.get(email=request.session['log_email']),
         }
         return render(request, "dashboard.html", context)
 
@@ -119,6 +120,12 @@ def log_out(request):
 def admin_controls(request):
     this_user = User.objects.get(email=request.session['log_email'])
     if this_user.admin == True:
+        # reviews = user.reviews.all()
+        # total = 0
+        # for review in reviews:
+        #     total += int(review.rating)
+        # avg = total / len(reviews)
+        # new = "%.2f" % avg
         context = {
             "admin": this_user,
             "all_items": Item.objects.all(),
@@ -139,9 +146,11 @@ def post_new_cat(request):
 
 
 def edit_category(request, category_id):
+
     context = {
         "this_category": Category.objects.get(id=category_id),
-        "admin": User.objects.get(email=request.session['log_email'])
+        "admin": User.objects.get(email=request.session['log_email']),
+        "avg": avg,
     }
     return render(request, "admin_edit_category.html", context)
 
@@ -177,7 +186,7 @@ def post_edit_user(request, user_id):
         this_user.location = request.POST['location']
         this_user.admin = request.POST['admin']
         this_user.save()
-        return redirect("/admin_controls")
+        return redirect(f"/user/{user_id}")
 
 
 def delete_user(request, user_id):

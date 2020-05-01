@@ -18,10 +18,10 @@
           <a class="nav-link disabled" href="/admin_controls" tabindex="-1" aria-disabled="true">Admin Control</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/dashboard">Dashboard<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/all_listings">All Items Listings<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/direct_message">Direct Messages<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/all_categories">All Categories<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="/new_item">New Listing<span class="sr-only">(current)</span></a>
@@ -95,14 +95,13 @@
         <th>Name</th>
         <th># Posts</th>
         <th>Avg Rating</th>
-        <th>Action</th></tr>
+        </tr>
       </thead>
       <tbody>
       {% for user in all_users %}
       <tr>
         <td>{{user.first_name}}</td>
         <td>{{user.items.all|length}}</td>
-        <td>{{user.ratings}}</td>
         <td>
           <div class="btn-group">
             <a href="/user/edit_user/{{user.id}}" class="btn btn-sm btn-outline-secondary"

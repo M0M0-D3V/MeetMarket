@@ -117,7 +117,7 @@ def item_info(request, item_id):
     messages = item.messages.all()
     images = item.images.all()
     this_user = User.objects.get(email=request.session['log_email'])
-
+    print("this is the user", this_user)
     context = {
         "item": item,
         "messages": messages,
@@ -143,11 +143,13 @@ def user_page(request, user_id):
     logged_user = User.objects.get(email=request.session['log_email'])
     items = user.items.all()
     reviews = user.reviews.all()
-    total = 0
-    for review in reviews:
-        total += int(review.rating)
-    avg = total / len(reviews)
-    new = "%.2f" % avg
+    new = 0
+    if len(reviews) > 0:
+        total = 0
+        for review in reviews:
+            total += int(review.rating)
+        avg = total / len(reviews)
+        new = "%.2f" % avg
     context = {
         "user": user,
         "items": items,
@@ -204,6 +206,18 @@ def all_listings(request):
     }
 
     return render(request, "allitems.html", context)
+
+
+def all_categories(request):
+    logged_user = User.objects.filter(email=request.session['log_email'])
+    user_admin = logged_user[0].admin
+    all_categories = Category.objects.all()
+    context = {
+        "user_admin": user_admin,
+        "categories": all_categories,
+    }
+
+    return render(request, "allcategories.html", context)
 
 
 def flag_item(request, item_id):

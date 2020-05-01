@@ -9,17 +9,16 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
+        {% if this_user.admin == True %}
         <li class="nav-item active">
           <a class="nav-link" href="/admin_controls">Admin Controls<span class="sr-only">(current)</span></a>
         </li>
+        {% endif %}
         <li class="nav-item active">
           <a class="nav-link" href="/all_listings">All Item Listings<span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Dashboard</a>
-        </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/direct_message">Direct Messages<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/all_categories">All Categories<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="/new_item">New Listing<span class="sr-only">(current)</span></a>

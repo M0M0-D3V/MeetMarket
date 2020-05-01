@@ -1,5 +1,14 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Login</h1>
+<main role="main">
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4" style="padding: 20px; margin-top: 20px;">
+      Welcome to the Meet Market!
+    </h1>
+  </div>
+  <hr />
+</main>
+<h2>Login</h2>
+<br />
 {% if messages %}
 <ul class="messages">
   {% for message in messages %}
@@ -21,6 +30,7 @@
   </div>
   <button type="submit" class="btn btn-primary">Login</button>
 </form>
+<br />
 <a href="/register">Don't have an account? Click here to register!</a>
 {% endblock %}
 
