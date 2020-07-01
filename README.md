@@ -4,7 +4,7 @@ Our goal is to build a better functioning craigslist!
 MonicaBranch ToDo
 - [x] DRY to Base htmls
 - [x] Setup namespace and named url paths
-- [] Change any existing url pathing to the namedpaths for professional look
+- [] Change any existing url pathing to the namedpaths for professional looking code
 - [] Rewrite the algorithm for "Last 3 Categories" on front page..
   - [] Should be Newest Categories that correlate to the 3 Newest Listings added
 - [] Item Info Page
