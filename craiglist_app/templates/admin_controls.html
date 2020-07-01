@@ -1,8 +1,4 @@
 {% extends 'base.html' %} {% block content %}
-<!-- <a href="/dashboard">Dashboard</a> &#124;
-<a href="/direct_message">Direct Message</a> &#124;
-<a href="/new_item">New Listing</a> &#124;
-<a href="/logout">Log Out</a> -->
 
 
 <main role="main">
@@ -25,12 +21,12 @@
         </thead><tbody>
           {% for category in all_categories %}
           <tr>
-            <td><a href="/category/{{category.id}}">{{category.name}}</a></td>
+            <td><a href="{% url 'item:my_category_page' category.id %}">{{category.name}}</a></td>
             <td>{{category.items.all|length}}</td>
             <td>
               <div class="btn-group">
-                <a href="/admin_controls/edit_category/{{category.id}}"class="btn btn-sm btn-outline-secondary" role="button">Edit</a>
-                <a href="/admin_controls/delete_category/{{category.id}}" class="btn btn-sm btn-outline-secondary" role="button">Delete</a>
+                <a href="{% url 'login:my_admin_edit_category' category.id %}"class="btn btn-sm btn-outline-secondary" role="button">Edit</a>
+                <a href="{% url 'login:my_admin_delete_category' category.id %}" class="btn btn-sm btn-outline-secondary" role="button">Delete</a>
               </div>
 
               </td>
@@ -40,7 +36,7 @@
               
               <td>Add Category:</td>
               <td>
-                <form action="/admin_controls/post_new_cat" method="POST">
+                <form action="{% url 'login:my_admin_post_new_cat' %}" method="POST">
                   {% csrf_token %}
                   <input type="text" name="name" placeholder="Enter new category" />
                 </td>
@@ -68,9 +64,9 @@
               <td>{{user.items.all|length}}</td>
               <td>
                 <div class="btn-group">
-                  <a href="/user/edit_user/{{user.id}}" class="btn btn-sm btn-outline-secondary"
+                  <a href="{% url 'login:my_edit_user' user.id %}" class="btn btn-sm btn-outline-secondary"
                   role="button">Edit</a>
-                  <a href="/user/delete_user/{{user.id}}" class="btn btn-sm btn-outline-secondary"
+                  <a href="{% url 'login:my_delete_user' user.id %}" class="btn btn-sm btn-outline-secondary"
                   role="button">Remove</a>
                 </div>
                 </tr>

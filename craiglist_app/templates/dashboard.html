@@ -1,12 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 
 
-<!-- <a href="/admin_controls" class="btn btn-danger" role="button">Admin Controls</a
-> <a href="/all_listings">All Item Listings</a> &#124;
-<a href="/direct_message">Direct Message</a> &#124;
-<a href="/new_item">New Listing</a> &#124;
-<a href="/logout">Log Out</a> -->
-
 <main role="main">
   <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
     <h1 class="display-4" style="padding: 20px; margin-top: 20px;">Welcome {{user_first_name}}!</h1>
@@ -14,9 +8,7 @@
   </div>
   <hr>
 </main>
-<!--
-<h1 class="page-header">Welcome {{user_first_name}}!</h1>
-<p>Feel free to browse or click above to add your own listing!</p> -->
+
 <div class="row">
   <div class="col-md-12">
     <p class="lead">Recently added to categories:</p>
@@ -26,54 +18,47 @@
 <div class="row">
 <div class="col-md-4 form-group">
   <h4 class="form-control">
-    <a href="/category/{{last_3category.0.id}}">{{last_3category.0.name}}</a>
+    <a href="{% url 'item:my_category_page' last_3category.0.id %}">{{last_3category.0.name}}</a>
   </h4>
   {% for item in last_cat_last_3items %}
   <p class="form-control">
     {% for image in item.images.all %}
     <img class="img-fluid thumbnail" src="{{image.image.url}}" />
     {% endfor %}
-    <a href="/item/{{item.id}}">{{item.name}}</a> - ${{item.price}}<br />
-    {% if user_admin == True %} |
-    <a href="/item/{{item.id}}/edit">Edit</a> |
-    <a href="/item/{{item.id}}/delete" class="danger">Delete</a>{% endif %}
+    <a href="{% url 'item:my_item_info' item.id %}">{{item.name}}</a> - ${{item.price}}<br />
+    {% if user_admin == True %} 
+    <a href="{% url 'item:my_edit_item' item.id %}" role="button" class="btn btn-outline-secondary btn-sm">Edit</a><a href="{% url 'item:my_delete_item' item.id %}" role="button" class="btn btn-outline-secondary btn-sm">Delete</a>{% endif %}
   </p>
   {% endfor %}
 </div>
 
   <div class="col-md-4 form-group">
     <h4 class="form-control">
-      <a href="/category/{{last_3category.1.id}}">{{last_3category.1.name}}</a>
+      <a href="{% url 'item:my_category_page' last_3category.1.id %}">{{last_3category.1.name}}</a>
     </h4>
     {% for item in seclast_cat_last_3items %}
     <p class="form-control">
       {% for image in item.images.all %}
       <img class="img-fluid thumbnail" src="{{image.image.url}}" />
       {% endfor %}
-      <a href="/item/{{item.id}}">{{item.name}}</a> - ${{item.price}}<br />
-      {% if user_admin == True %} |
-      <a href="/item/{{item.id}}/edit">Edit</a> |
-      <a href="/item/{{item.id}}/delete" class="danger">Delete</a>{% endif %}
+      <a href="{% url 'item:my_item_info' item.id %}">{{item.name}}</a> - ${{item.price}}<br />
+      {% if user_admin == True %}
+      <a href="{% url 'item:my_edit_item' item.id %}" role="button" class="btn btn-outline-secondary btn-sm">Edit</a><a href="{% url 'item:my_delete_item' item.id %}" role="button" class="btn btn-outline-secondary btn-sm">Delete</a>{% endif %}
     </p>
     {% endfor %}
   </div>
   <div class="col-md-4 form-group">
     <h4 class="form-control">
-      <a href="/category/{{last_3category.2.id}}">{{last_3category.2.name}}</a>
+      <a href="{% url 'item:my_category_page' last_3category.2.id %}">{{last_3category.2.name}}</a>
     </h4>
     {% for item in thirdlast_cat_last_3items %}
     <p class="form-control">
       {% for image in item.images.all %}
       <img class="img-fluid" src="{{image.image.url}}" />
       {% endfor %}
-      <a href="/item/{{item.id}}">{{item.name}}</a> - ${{item.price}} <br>
-      {% if user_admin == True %} |
-        <!-- <div class="btn-group">
-          <a href="/item/{{item.id}}/edit" class="btn btn-sm btn-outline-secondary" role="button">Edit</a>
-          <a href="/item/{{item.id}}/delete" class="btn btn-sm btn-outline-secondary" role="button">Delete</a>
-        </div> -->
-      <a href="/item/{{item.id}}/edit">Edit</a> |
-      <a href="/item/{{item.id}}/delete">Delete</a>{% endif %}
+      <a href="{% url 'item:my_item_info' item.id %}">{{item.name}}</a> - ${{item.price}} <br>
+      {% if user_admin == True %}
+      <a href="{% url 'item:my_edit_item' item.id %}" role="button" class="btn btn-outline-secondary btn-sm">Edit</a><a href="{% url 'item:my_delete_item' item.id %}" role="button" class="btn btn-outline-secondary btn-sm">Delete</a>{% endif %}
     </p>
     {% endfor %}
   </div>

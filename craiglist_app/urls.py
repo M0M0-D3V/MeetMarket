@@ -33,7 +33,6 @@ urlpatterns = [
          views.post_edit_category, name="my_admin_post_edit_category"),
 
     path('admin_controls/delete_category/<int:category_id>',
-
          views.delete_category, name="my_admin_delete_category"),
 
     path('category/delete_category/<int:category_id>',

@@ -16,7 +16,9 @@
       height="200px"
     />
     {% endfor %}
-    <p>Name: <a href="/item/{{item.id}}">{{item.name}}</a></p>
+    <p>
+      Name: <a href="{% url 'item:my_item_info' item.id %}">{{item.name}}</a>
+    </p>
     <p>Price: ${{item.price}}</p>
   </div>
 
