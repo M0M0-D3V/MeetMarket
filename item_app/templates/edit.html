@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block content %}{% if this_user.admin == True %}
+{% extends 'base.html' %} {% block content %} {% if this_user.admin == True %}
 
 <h1 style="padding-top: 30px; margin-top: 70px;">Edit {{this_item.name}}</h1>
 <hr />
@@ -80,7 +80,7 @@
       class="btn btn-danger"
       role="button"
       >Delete</a
-    >{% endif %}
+    >{% endif %}{% endif %}
   </div>
 </form>
 {% endblock %}
