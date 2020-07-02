@@ -23,7 +23,7 @@ def log_in(request):
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value)
-        return redirect('/')
+        return redirect('login:my_index')
     else:
         if request.method == "POST":
             log_email = request.POST['log_email']
@@ -31,7 +31,7 @@ def log_in(request):
             if User.objects.filter(email=log_email):
                 request.session['log_email'] = log_email
                 request.session['log_pw'] = log_pw
-                return redirect("/dashboard")
+                return redirect('login:my_successful_log_in')
 
 
 def register(request):
@@ -39,7 +39,7 @@ def register(request):
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value)
-        return redirect('/register')
+        return redirect('login:my_register_page')
     else:
         if request.method == "POST":
             first_name = request.POST['first_name']
@@ -63,14 +63,14 @@ def register(request):
                 if len(errors) > 0:
                     for key, value in errors.items():
                         messages.error(request, value)
-                    return redirect('/register')
+                    return redirect('login:my_register_page')
 
-    return redirect('/dashboard')
+    return redirect('login:my_successful_log_in')
 
 
 def successful_log_in(request):
     if request.session['log_email'] == []:
-        return redirect('/')
+        return redirect('login:my_index')
 
     else:
         logged_user = User.objects.filter(email=request.session['log_email'])
@@ -114,7 +114,7 @@ def direct_message(request):
 def log_out(request):
     request.session['log_email'] = []
     request.session['log_pw'] = []
-    return redirect('/')
+    return redirect('login:my_index')
 
 
 def admin_controls(request):
@@ -134,7 +134,7 @@ def admin_controls(request):
         }
         return render(request, "admin_controls.html", context)
     else:
-        return redirect('/dashboard')
+        return redirect('login:my_successful_log_in')
 
 
 def post_new_cat(request):
@@ -142,7 +142,7 @@ def post_new_cat(request):
         name = request.POST['name']
         new_category = Category.objects.create(name=name)
         print(new_category)
-    return redirect("/admin_controls")
+    return redirect('login:my_admin_controls')
 
 
 def edit_category(request, category_id):
@@ -160,13 +160,13 @@ def post_edit_category(request, category_id):
         this_category = Category.objects.get(id=category_id)
         this_category.name = request.POST['name']
         this_category.save()
-    return redirect('/admin_controls')
+    return redirect('login:my_admin_controls')
 
 
 def delete_category(request, category_id):
     this_category = Category.objects.get(id=category_id)
     this_category.delete()
-    return redirect('/admin_controls')
+    return redirect('login:my_admin_controls')
 
 
 def edit_user(request, user_id):
@@ -186,7 +186,7 @@ def post_edit_user(request, user_id):
         this_user.location = request.POST['location']
         this_user.admin = request.POST['admin']
         this_user.save()
-        return redirect(f"/user/{user_id}")
+        return redirect('item:my_user_page', user_id)
 
 
 def delete_user(request, user_id):
@@ -194,4 +194,4 @@ def delete_user(request, user_id):
     # if request.method == "POST":
     this_user = User.objects.get(id=user_id)
     this_user.delete()
-    return redirect("/admin_controls")
+    return redirect('login:my_admin_controls')
