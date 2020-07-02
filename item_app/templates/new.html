@@ -20,7 +20,11 @@
 </ul>
 {% endif %}
 
-<form action="/create_item" method="POST" enctype="multipart/form-data">
+<form
+  action="{% url 'item:my_create_item' %}"
+  method="POST"
+  enctype="multipart/form-data"
+>
   {% csrf_token %}
   <div class="form-group">
     <label for="name">Name of Listing:</label>
@@ -54,7 +58,12 @@
     <label for="images">Upload Image:</label>
     <input type="file" name="images" />
     <button type="submit" class="btn btn-primary">Create</button>
-    <a href="/dashboard" class="btn btn-default" role="button">Cancel</a>
+    <a
+      href="{% url 'login:my_successful_log_in' %}"
+      class="btn btn-default"
+      role="button"
+      >Cancel</a
+    >
   </div>
 </form>
 {% endblock %}

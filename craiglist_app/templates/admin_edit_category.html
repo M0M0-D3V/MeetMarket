@@ -1,12 +1,13 @@
 {% extends 'base.html' %} {% block content %}
 
-<a href="/direct_message">Direct Message</a> &#124;
-<a href="/new_item">New Listing</a> &#124; <a href="/logout">Log Out</a> &#124;
 <h1>Welcome Admin User: {{admin.first_name}}!</h1>
 <p class="lead">Here to quack shift up!!</p>
 
 <h4>Update Category Name:</h4>
-<form action="/admin_controls/post_edit_cat/{{this_category.id}}" method="POST">
+<form
+  action="{% url 'login:my_admin_post_edit_category' this_category.id %}"
+  method="POST"
+>
   {% csrf_token %}
   <div class="form-group">
     <label for="name">Name of Category:</label>
@@ -17,9 +18,14 @@
       value="{{this_category.name}}"
     />
     <button type="submit" class="btn btn-primary">Edit</button>
-    <a href="/admin_controls" class="btn btn-info" role="button">Cancel</a>
     <a
-      href="/admin_controls/delete_cat{{this_category.id}}"
+      href="{% url 'login:my_admin_controls' %}"
+      class="btn btn-info"
+      role="button"
+      >Cancel</a
+    >
+    <a
+      href="{% url 'login:my_admin_delete_category' this_category.id %}"
       class="btn btn-danger"
       role="button"
       >Delete</a
@@ -46,14 +52,20 @@
     <tr class="danger">
       {% endif %}
       <td>{{item.flag}}</td>
-      <td><a href="/item/{{item.id}}">{{item.name}}</a></td>
+      <td><a href="{% url 'item:my_item_info' item.id %}">{{item.name}}</a></td>
       <td>${{item.price}}</td>
-      <td><a href="/user/{{item.user.id}}">{{item.user.first_name}}</a></td>
+      <td>
+        <a href="{% url 'item:my_user_page' item.user.id %}"
+          >{{item.user.first_name}}</a
+        >
+      </td>
       <td>{{item.created_at}}</td>
       <td>{{item.location}}</td>
       <td>
-        <a href="/item/{{item.id}}/edit">Edit</a> |
-        <a href="/item/{{item.id}}/delete" class="danger">Delete</a>
+        <a href="{% url 'item:my_edit_item' item.id %}">Edit</a> |
+        <a href="{% url 'item:my_delete_item' item.id %}" class="danger"
+          >Delete</a
+        >
       </td>
     </tr>
     {% endfor %}

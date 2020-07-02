@@ -3,14 +3,6 @@
 <h1 style="padding-top: 30px; margin-top: 70px;">Edit {{this_item.name}}</h1>
 <hr />
 
-<!--
-<a href="/admin_controls" class="btn btn-danger" role="button">Admin Controls</a
->{% endif %}
-<a href="/dashboard">Dashboard</a>
-<a href="/direct_message">Direct Message</a>
-<a href="/new_item">New Listing</a>
-<a href="/logout">Log Out</a>
-<h1>Edit {{this_item.name}}</h1> -->
 {% if messages %}
 <ul class="messages">
   {% for message in messages %}
@@ -21,7 +13,7 @@
 </ul>
 {% endif %}
 <form
-  action="/post_edit/{{this_item.id}}"
+  action="{% url 'item:my_post_edit_item' this_item.id %}"
   method="POST"
   enctype="multipart/form-data"
 >
@@ -76,9 +68,17 @@
     <input type="file" name="images" value="{{image}}" />
     {% endif %}
     <button type="submit" class="btn btn-primary">Edit</button>
-    <a href="/dashboard" class="btn btn-info" role="button">Cancel</a>
+    <a
+      href="{% url 'login:my_successful_log_in' %}"
+      class="btn btn-info"
+      role="button"
+      >Cancel</a
+    >
     {% if this_user.admin == True %}
-    <a href="/delete{{this_item.id}}" class="btn btn-danger" role="button"
+    <a
+      href="{% url 'item:my_delete_item' this_item.id %}"
+      class="btn btn-danger"
+      role="button"
       >Delete</a
     >{% endif %}
   </div>

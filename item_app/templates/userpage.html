@@ -6,7 +6,8 @@
 <p>Member Since: {{user.created_at}}</p>
 <h3>Current Item Listings:</h3>
 {% for item in items %}
-<a href="/item/{{item.id}}">{{item.name}}</a> &#124; {% endfor %}
+<a href="{% url 'item:my_item_info' item.id %}">{{item.name}}</a> &#124; {%
+endfor %}
 <hr />
 <h3>
   Average Reviews: {{avg}} out of 5
@@ -19,7 +20,7 @@
   {% endfor %}
 </div>
 {% if user.id != logged_user.id %}
-<form action="/new_review" method="POST">
+<form action="{% url 'item:my_new_review' %}" method="POST">
   {% csrf_token %}
   <div class="form-group">
     <label for="rating">Rating:</label>

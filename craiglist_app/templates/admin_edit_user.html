@@ -8,7 +8,10 @@
 </h1>
 <hr />
 <h4>Update User:</h4>
-<form action="/admin_controls/post_edit_user/{{edit_user.id}}" method="POST">
+<form
+  action="{% url 'login:my_admin_post_edit_user' edit_user.id %}"
+  method="POST"
+>
   {% csrf_token %}
   <div class="form-group">
     <label for="first_name">First Name</label>
@@ -54,9 +57,14 @@
     </select>
   </div>
   <button type="submit" class="btn btn-primary">Edit</button>
-  <a href="/admin_controls" class="btn btn-info" role="button">Cancel</a>
   <a
-    href="/admin_controls/delete_cat{{this_category.id}}"
+    href="{% url 'login:my_admin_controls' %}"
+    class="btn btn-info"
+    role="button"
+    >Cancel</a
+  >
+  <a
+    href="{% url 'login:my_admin_delete_category' this_category.id %}"
     class="btn btn-danger"
     role="button"
     >Delete</a
