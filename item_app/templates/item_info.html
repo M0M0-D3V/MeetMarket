@@ -1,106 +1,108 @@
 {% extends 'base.html' %} {% block content %}
-<body>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="/dashboard">Craiglist</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-      <ul class="navbar-nav mr-auto">
-        {% if this_user.admin == True %}
-        <li class="nav-item active">
-          <a class="nav-link" href="/admin_controls">Admin Controls<span class="sr-only">(current)</span></a>
-        </li>
-        {% endif %}
-        <li class="nav-item active">
-          <a class="nav-link" href="/all_listings">All Items Listings<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="/all_categories">All Categories<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-        <li class="nav-item active">
-          <a class="nav-link" href="/new_item">New Listing<span class="sr-only">(current)</span></a>
-        </li>
-      </ul>
-      <a class="btn btn-sm btn-outline-secondary" href="/logout"">Log Out</a>
-    </div>
-  </nav>
-  <!-- end of navbar -->
-
-  <h1 style="padding-top: 30px; margin-top:70px">Item Details</h1>
-  <hr>
+<h1 style="padding-top: 30px; margin-top: 70px;">Item Details</h1>
+<!-- <hr /> -->
 {% if item.flag == True %}
 <h2>!!ITEM HAS BEEN FLAGGED FOR ABUSE!!</h2>
-{% endif %} {% for image in images %}
-<img class="img-fluid" src="{{image.image.url}}" />
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      {% endif %} {% for image in images %}
+      <img class="img-fluid" src="{{image.image.url}}" />
 
-{% endfor %}
-<h2>{{item.name}}</h2>
-<p>
-  Posted By:
-  <a href="/user/{{item.user.id}}"
-    >{{item.user.first_name}} {{item.user.last_name}}</a
-  >
-</p>
-<p>Posted On: {{item.created_at}}</p>
-<p>Description: {{item.description}}</p>
-<p>Location: {{item.location}}</p>
-<p>Price: ${{item.price}}</p>
-<p>
-  Category: <a href="/category/{{item.category.id}}">{{item.category.name}}</a>
-</p>
-<p>
-  <span
-    ><a href="/flag_item/{{item.id}}" class="btn btn-danger" role="button"
-      >flag</a
-    ></span
-  >
-</p>
-{% if this_user.admin == True %}
-<form action="/admin_flag_control/{{item.id}}" method="POST">
-  Admin Flag Controls {% csrf_token %}
-  <select name="flag">
-    <option value="False">False</option>
-    <option value="True">True</option>
-  </select>
-  <button class="btn btn-default">Update</button>
-</form>
-{% endif %}
-<hr />
-<form action="/post_message" method="POST">
-  {% csrf_token %}
-  <div class="form-group">
-    <label for="message">Post a Message:</label>
-    <textarea class="form-control" name="message" cols="30" rows="5"></textarea>
-    <input type="hidden" name="user_id" value="{{user_id}}" />
-    <input type="hidden" name="item_id" value="{{item.id}}" />
-  </div>
-  <button type="submit" class="btn btn-primary">Post Message</button>
-</form>
-{% for message in messages reversed %}
-<h4>
-  {{message.user.first_name}} {{message.user.last_name}} - {{time}}
-</h4>
-<p>{{message.message}}</p>
-{% for comment in message.comments.all %}
-<h6>
-  {{comment.user.first_name}} {{comment.user.last_name}} - {{comment.comment}}
-</h6>
-{% endfor %}
-<form action="/post_comment" method="POST">
-  {% csrf_token %}
-  <div class="form-group">
-    <label for="comment">Post a Comment</label> <br />
-    <textarea class="form-control" name="comment" cols="40" rows="3"></textarea>
-    <br />
-    <input type="hidden" name="messageid" value="{{message.id}}" />
-    <input type="hidden" name="userid" value="" />
-    <input type="hidden" name="itemid" value="{{item.id}}" />
-  </div>
-  <button type="submit" class="btn btn-primary">Post Comment</button>
+      {% endfor %}
+      <h2>{{item.name}}</h2>
+      <p>
+        Posted By:
+        <a href="{% url 'item:my_user_page' item.user.id %}"
+          >{{item.user.first_name}} {{item.user.last_name}}</a
+        >
+      </p>
+      <p>Posted On: {{item.created_at}}</p>
+      <p>Description: {{item.description}}</p>
+      <p>Location: {{item.location}}</p>
+      <p>Price: ${{item.price}}</p>
+      <p>
+        Category:
+        <a href="{% url 'item:my_category_page' item.category.id %}"
+          >{{item.category.name}}</a
+        >
+      </p>
+      <p>
+        <span
+          ><a
+            href="{% url 'item:my_flag_item' item.id %}"
+            class="btn btn-outline-danger btn-sm"
+            role="button"
+            >flag</a
+          ></span
+        >
+      </p>
+      {% if this_user.admin == True %}
+      <form
+        action="{% url 'item:my_admin_flag_control' item.id %}"
+        method="POST"
+      >
+        Admin Flag Controls {% csrf_token %}
+        <select name="flag">
+          <option value="False">False</option>
+          <option value="True">True</option>
+        </select>
+        <button class="btn btn-outline-default btn-sm">Update</button>
+      </form>
+      {% endif %}
+      <!-- <hr /> -->
+    </div>
 
-</form>
+    <div class="col-md-5">
+      <form action="{% url 'item:my_post_message' %}" method="POST">
+        {% csrf_token %}
+        <!-- <div class="form-group"> -->
+        <label for="message">Post a Message:</label>
+        <textarea
+          class="form-control"
+          name="message"
+          cols="30"
+          rows="5"
+        ></textarea>
+        <input type="hidden" name="user_id" value="{{user_id}}" />
+        <input type="hidden" name="item_id" value="{{item.id}}" />
+        <!-- </div> -->
+        <button type="submit" class="btn btn-outline-primary btn-sm">
+          Post Message
+        </button>
+      </form>
+      {% for message in messages reversed %}
+      <h4>
+        {{message.user.first_name}} {{message.user.last_name}} - {{time}}
+      </h4>
+      <p>{{message.message}}</p>
+      {% for comment in message.comments.all %}
+      <h6>
+        {{comment.user.first_name}} {{comment.user.last_name}} -
+        {{comment.comment}}
+      </h6>
+      {% endfor %}
+      <form action="{% url 'item:my_post_comment' %}" method="POST">
+        {% csrf_token %}
+        <!-- <div class="form-group"> -->
+        <label for="comment">Post a Comment</label> <br />
+        <textarea
+          class="form-control"
+          name="comment"
+          cols="40"
+          rows="3"
+        ></textarea>
+        <br />
+        <input type="hidden" name="messageid" value="{{message.id}}" />
+        <input type="hidden" name="userid" value="" />
+        <input type="hidden" name="itemid" value="{{item.id}}" />
+        <!-- </div> -->
+        <button type="submit" class="btn btn-outline-primary btn-sm">
+          Post Comment
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
 {% endfor %}{% endblock %}

@@ -18,8 +18,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', include('craiglist_app.urls')),
-    path('', include('item_app.urls')),
+    path('', include('craiglist_app.urls', namespace="login")),
+    path('', include('item_app.urls', namespace="item")),
     # path('category/', include('item_app.urls')),
 ]
 

@@ -18,7 +18,7 @@
   {% endfor %}
 </ul>
 {% endif %}
-<form action="/login_submit" method="POST">
+<form action="{% url 'login:my_log_in' %}" method="POST">
   {% csrf_token %}
   <div class="form-group">
     <label for="log_email">Email Address</label>
@@ -31,7 +31,9 @@
   <button type="submit" class="btn btn-primary">Login</button>
 </form>
 <br />
-<a href="/register">Don't have an account? Click here to register!</a>
+<a href="{% url 'login:my_register_page' %}"
+  >Don't have an account? Click here to register!</a
+>
 {% endblock %}
 
 <!--  <body class="text-center">

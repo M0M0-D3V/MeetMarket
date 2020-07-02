@@ -31,7 +31,7 @@ def create_item(request):
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value)
-        return redirect('/new_item')
+        return redirect('item:my_new_item')
     else:
         if request.method == "POST":
             logged_user = User.objects.filter(
@@ -52,7 +52,7 @@ def create_item(request):
             item_id = new_item.id
             new_image = Image.objects.create(item=new_item, image=image)
             print(item_id)
-        return redirect(f'/item/{item_id}')
+        return redirect('item:my_item_info', item_id)
 
 
 def edit(request, item_id):
@@ -83,7 +83,7 @@ def post_edit(request, item_id):
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value)
-        return redirect(f'/item/{item_id}/edit')
+        return redirect('item:my_edit_item', item_id)
     else:
         if request.method == "POST":
             this_item = Item.objects.get(id=item_id)
@@ -103,13 +103,13 @@ def post_edit(request, item_id):
                 url = fs.url(image_name)
                 new_image = Image.objects.create(item=this_item, image=image)
             this_item.save()
-    return redirect(f'/item/{item_id}')
+    return redirect('item:my_item_info', item_id)
 
 
 def delete(request, item_id):
     this_item = Item.objects.get(id=item_id)
     this_item.delete()
-    return redirect('/dashboard')
+    return redirect('login:my_successful_log_in')
 
 
 def item_info(request, item_id):
@@ -168,7 +168,7 @@ def new_review(request):
         rating = int(request.POST['rating'])
         new_review = Review.objects.create(
             user=user, content=review, rating=rating)
-    return redirect(f'/user/{user_id}')
+    return redirect('item:my_user_page', user_id)
 
 
 def post_message(request):
@@ -180,7 +180,7 @@ def post_message(request):
         item = Item.objects.get(id=item_id)
         new_message = Message.objects.create(
             user=logged_user[0], item=item, message=message)
-    return redirect(f'/item/{item_id}')
+    return redirect('item:my_item_info', item_id)
 
 
 def post_comment(request):
@@ -193,7 +193,7 @@ def post_comment(request):
         item_id = request.POST['itemid']
         new_comment = Comment.objects.create(
             message=message, user=logged_user[0], comment=comment)
-    return redirect(f'/item/{item_id}')
+    return redirect('item:my_item_info', item_id)
 
 
 def all_listings(request):
@@ -226,7 +226,7 @@ def flag_item(request, item_id):
     flag_this_item.save()
     print(
         f"this item has been flagged: {flag_this_item} - {flag_this_item.flag}")
-    return redirect(f'/item/{item_id}')
+    return redirect('item:my_item_info', item_id)
 
 
 def admin_flag_control(request, item_id):
@@ -234,4 +234,4 @@ def admin_flag_control(request, item_id):
         flag_this_item = Item.objects.get(id=item_id)
         flag_this_item.flag = request.POST['flag']
         flag_this_item.save()
-    return redirect(f'/item/{item_id}')
+    return redirect('item:my_item_info', item_id)
