@@ -12,38 +12,38 @@
 
 #### MeetMarket was built in 5 days- 2 days of planning and 3 days of coding.
 In that time, we were able to achieve our **MVP** of:
-[x] Login / Reg with front-end html validations and back-end with bcrypt
-[x] Front page algorithm to show the 3 newest categories
-[x] Users can post new listings
-  [x] Images can be uploaded 
-[x] Users can edit and delete their own postings
-[x] Postings can be 'flagged' for abuse by other users for review by Admin
-[x] Message system that users can leave the poster questions and comments
-[x] Admin level views of all user pages with special controls to edit or delete
-[x] Custom built Admin control hub with full control
-  [x] Create / Edit / or Delete categories
-  [x] Edit or Remove users
-  [x] Review Posts marked 'flagged' and take actions to edit or delete
-  [x] Overview all Postings and options for edit and delete
+* [x] Login / Reg with front-end html validations and back-end with bcrypt
+* [x] Front page algorithm to show the 3 newest categories
+* [x] Users can post new listings
+  * [x] Images can be uploaded 
+* [x] Users can edit and delete their own postings
+* [x] Postings can be 'flagged' for abuse by other users for review by Admin
+* [x] Message system that users can leave the poster questions and comments
+* [x] Admin level views of all user pages with special controls to edit or delete
+* [x] Custom built Admin control hub with full control
+  * [x] Create / Edit / or Delete categories
+  * [x] Edit or Remove users
+  * [x] Review Posts marked 'flagged' and take actions to edit or delete
+  * [x] Overview all Postings and options for edit and delete
 
 # Current progress in further development!
 #### Monica's To-Do
-[x] DRY to Base htmls
-[x] Setup namespace and named url paths
-[x] Change any existing url pathing to the namedpaths for professional looking code
-[ ] Rewrite the algorithm for "Last 3 Categories" on front page..
-  [ ] Should be Newest Categories that correlate to the 3 Newest Listings added
-[ ] Item Info Page
-  [ ] Resize Pics to 200x200
-  [ ] Listing Info Side by side with Messaging / Comments
-[ ] User Info Page
-  [ ] Fix Avg Rating
-[ ] Admin Control Page
-  [ ] Side by side column for All Categories and All Users
-  [ ] Pagination to 10 Items for all tables
-  [ ] Sortable tables
-[ ] Direct Messaging System
-  [ ] On this_user page, Send Message to this_user from session_user
-  [ ] Add to NavBar
-  [ ] Direct Message Page to retrieve messages
-[ ] Google Maps API
+* [x] DRY to Base htmls
+* [x] Setup namespace and named url paths
+* [x] Change any existing url pathing to the namedpaths for professional looking code
+* [ ] Rewrite the algorithm for "Last 3 Categories" on front page..
+  * [ ] Should be Newest Categories that correlate to the 3 Newest Listings added
+* [ ] Item Info Page
+  * [ ] Resize Pics to 200x200
+  * [ ] Listing Info Side by side with Messaging / Comments
+* [ ] User Info Page
+  * [ ] Fix Avg Rating
+* [ ] Admin Control Page
+  * [ ] Side by side column for All Categories and All Users
+  * [ ] Pagination to 10 Items for all tables
+  * [ ] Sortable tables
+* [ ] Direct Messaging System
+  * [ ] On this_user page, Send Message to this_user from session_user
+  * [ ] Add to NavBar
+  * [ ] Direct Message Page to retrieve messages
+* [ ] Google Maps API
