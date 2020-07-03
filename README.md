@@ -1,7 +1,16 @@
-#Improving Craigslist
-Our goal is to build a better functioning craigslist!
+![alt text](https://m0m0-d3v.github.io/img/meetmarketprezi.png "meetmarketprezi")
 
-MonicaBranch ToDo
+# This is a project about improving Craigslist
+
+### Meet the team:
+- Levi Blank
+- Sawyee Beck
+- Patrick Hebert
+- Monica Hong
+
+### Our goal is to build a better functioning Craigslist using Python / Django! We like the simplicity and broad spectrum of what Craigslist offers, but we cringe at their design approach because it looks like everything is thrown in together. It's way too busy! Our focus was to clean that up. MeetMarket was coded in 3 days.
+
+#### MonicaBranch ToDo
 
 - [x] DRY to Base htmls
 - [x] Setup namespace and named url paths
