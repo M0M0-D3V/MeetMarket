@@ -15,16 +15,16 @@ In that time, we were able to achieve our **MVP** of:
 * [x] Login / Reg with front-end html validations and back-end with bcrypt
 * [x] Front page algorithm to show the 3 newest categories
 * [x] Users can post new listings
-..* [x] Images can be uploaded 
+  * [x] Images can be uploaded 
 * [x] Users can edit and delete their own postings
 * [x] Postings can be 'flagged' for abuse by other users for review by Admin
 * [x] Message system that users can leave the poster questions and comments
 * [x] Admin level views of all user pages with special controls to edit or delete
 * [x] Custom built Admin control hub with full control
-..* [x] Create / Edit / or Delete categories
-..* [x] Edit or Remove users
-..* [x] Review Posts marked 'flagged' and take actions to edit or delete
-..* [x] Overview all Postings and options for edit and delete
+  * [x] Create / Edit / or Delete categories
+  * [x] Edit or Remove users
+  * [x] Review Posts marked 'flagged' and take actions to edit or delete
+  * [x] Overview all Postings and options for edit and delete
 
 # Current progress in further development!
 #### Monica's To-Do
