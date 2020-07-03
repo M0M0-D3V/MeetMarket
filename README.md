@@ -17,8 +17,9 @@ In that time, we were able to achieve our **MVP** of:
 * [x] Users can post new listings
   * [x] Images can be uploaded 
 * [x] Users can edit and delete their own postings
-* [x] Postings can be 'flagged' for abuse by other users for review by Admin
 * [x] Message system that users can leave the poster questions and comments
+* [x] Profile pages for users with details of their membership and their Listing history
+* [x] Postings can be 'flagged' for abuse by other users for review by Admin
 * [x] Admin level views of all user pages with special controls to edit or delete
 * [x] Custom built Admin control hub with full control
   * [x] Create / Edit / or Delete categories
