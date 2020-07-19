@@ -150,7 +150,7 @@ def edit_category(request, category_id):
     context = {
         "this_category": Category.objects.get(id=category_id),
         "admin": User.objects.get(email=request.session['log_email']),
-        "avg": avg,
+        "avg": "avg",
     }
     return render(request, "admin_edit_category.html", context)
 
