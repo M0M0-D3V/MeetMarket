@@ -89,6 +89,22 @@ def successful_log_in(request):
         third_last_category = categories_reversed[2]
         items_reversed_thirdlast_cat = third_last_category.items.all().order_by('-id')
 
+        # ***********TRYING SOMETHING NEW HERE***************
+        # [x] last 3 items
+        last_three_items = Item.objects.all().order_by('-id')[0:3]
+        # [x] get the categories
+        categories = []
+        for item in last_three_items:
+            categories.append(item.category)
+        # [x] for each category, get last 3 items
+        hashT = {}
+        # for category in categories:
+        for i in range(len(categories)):
+            hashT[categories[i]] = categories[i].items.all().order_by('-id')[0:3]
+        print(f"***********hashT: {hashT}*****")
+        # [] pass the hashTable to the dashboard??? HOW
+
+        # ***************************************************
         context = {
             "user_first_name": user_first_name,
             "user_admin": user_admin,
