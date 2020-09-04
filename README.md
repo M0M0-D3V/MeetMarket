@@ -40,7 +40,7 @@ In that time, we were able to achieve our **MVP** of:
 * [ ] User Info Page
   * [ ] Fix Avg Rating
 * [ ] Admin Control Page
-  * [ ] Side by side column for All Categories and All Users
+  * [x] Side by side column for All Categories and All Users
   * [ ] Pagination to 10 Items for all tables
   * [ ] Sortable tables
 * [ ] Direct Messaging System
