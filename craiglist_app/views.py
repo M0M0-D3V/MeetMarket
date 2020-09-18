@@ -103,7 +103,7 @@ def successful_log_in(request):
                 print(f"*****item is {item}*****")
         print(f"***********hashT: {hashT}*****")
         # ***************************************************
-        # [] pass the hashTable to the dashboard??? HOW
+        # [x] pass the hashTable to the dashboard??? HOW
         context = {
             "user_first_name": user_first_name,
             "user_admin": user_admin,
@@ -115,6 +115,7 @@ def successful_log_in(request):
             "thirdlast_cat_last_3items": items_reversed_thirdlast_cat[0:3],
             # good golly that was painful...
             "this_user": User.objects.get(email=request.session['log_email']),
+            "categories": categories,
             "category_hash": hashT,
         }
         # return render(request, "test.html", context)
