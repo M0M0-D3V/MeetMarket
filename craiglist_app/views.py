@@ -117,8 +117,8 @@ def successful_log_in(request):
             "this_user": User.objects.get(email=request.session['log_email']),
             "category_hash": hashT,
         }
-        return render(request, "test.html", context)
-        # return render(request, "dashboard.html", context)
+        # return render(request, "test.html", context)
+        return render(request, "dashboard.html", context)
 
 
 def direct_message(request):
