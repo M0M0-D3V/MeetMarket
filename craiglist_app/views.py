@@ -81,8 +81,6 @@ def successful_log_in(request):
         # last 3 items per each last category
         last_category = categories_reversed[0]
         items_reversed_last_cat = last_category.items.all().order_by('-id')
-        print(last_category.items.all())
-        print(items_reversed_last_cat)
         second_last_category = categories_reversed[1]
         items_reversed_secondlast_cat = second_last_category.items.all().order_by('-id')
 
@@ -99,12 +97,13 @@ def successful_log_in(request):
         # [x] for each category, get last 3 items
         hashT = {}
         # for category in categories:
-        for i in range(len(categories)):
-            hashT[categories[i]] = categories[i].items.all().order_by('-id')[0:3]
+        for category in categories:
+            hashT[category] = category.items.all().order_by('-id')[0:3]
+            for item in hashT[category]:
+                print(f"*****item is {item}*****")
         print(f"***********hashT: {hashT}*****")
-        # [] pass the hashTable to the dashboard??? HOW
-
         # ***************************************************
+        # [] pass the hashTable to the dashboard??? HOW
         context = {
             "user_first_name": user_first_name,
             "user_admin": user_admin,
@@ -116,8 +115,10 @@ def successful_log_in(request):
             "thirdlast_cat_last_3items": items_reversed_thirdlast_cat[0:3],
             # good golly that was painful...
             "this_user": User.objects.get(email=request.session['log_email']),
+            "category_hash": hashT,
         }
-        return render(request, "dashboard.html", context)
+        return render(request, "test.html", context)
+        # return render(request, "dashboard.html", context)
 
 
 def direct_message(request):
