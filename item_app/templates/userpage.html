@@ -6,8 +6,8 @@
 <p>Member Since: {{user.created_at}}</p>
 <h3>Current Item Listings:</h3>
 {% for item in items %}
-<a href="{% url 'item:my_item_info' item.id %}">{{item.name}}</a> &#124; {%
-endfor %}
+<a href="{% url 'item:my_item_info' item.id %}">{{item.name}}</a> &#124;
+{% endfor %}
 <hr />
 <h3>
   Average Reviews: {{avg}} out of 5
@@ -38,4 +38,5 @@ endfor %}
   <input type="hidden" name="user_id" value="{{user.id}}" />
   <button type="submit" class="btn btn-primary">Post Review</button>
 </form>
-{% endif %} {% endblock %}
+{% endif %}
+{% endblock %}

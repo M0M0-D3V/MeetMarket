@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>test</title>
+  </head>
+
+  <body>
+    {% for category in category_hash %} {% for item in category.items.all %}
+    <h1>IDX: {{ item.name }}</h1>
+    {% endfor %} {% endfor %}
+  </body>
+</html>

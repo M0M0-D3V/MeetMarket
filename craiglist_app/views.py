@@ -81,14 +81,29 @@ def successful_log_in(request):
         # last 3 items per each last category
         last_category = categories_reversed[0]
         items_reversed_last_cat = last_category.items.all().order_by('-id')
-        print(last_category.items.all())
-        print(items_reversed_last_cat)
         second_last_category = categories_reversed[1]
         items_reversed_secondlast_cat = second_last_category.items.all().order_by('-id')
 
         third_last_category = categories_reversed[2]
         items_reversed_thirdlast_cat = third_last_category.items.all().order_by('-id')
 
+        # ***********TRYING SOMETHING NEW HERE***************
+        # [x] last 3 items
+        last_three_items = Item.objects.all().order_by('-id')[0:3]
+        # [x] get the categories
+        categories = []
+        for item in last_three_items:
+            categories.append(item.category)
+        # [x] for each category, get last 3 items
+        hashT = {}
+        # for category in categories:
+        for category in categories:
+            hashT[category] = category.items.all().order_by('-id')[0:3]
+            for item in hashT[category]:
+                print(f"*****item is {item}*****")
+        print(f"***********hashT: {hashT}*****")
+        # ***************************************************
+        # [x] pass the hashTable to the dashboard??? HOW
         context = {
             "user_first_name": user_first_name,
             "user_admin": user_admin,
@@ -100,7 +115,10 @@ def successful_log_in(request):
             "thirdlast_cat_last_3items": items_reversed_thirdlast_cat[0:3],
             # good golly that was painful...
             "this_user": User.objects.get(email=request.session['log_email']),
+            "categories": categories,
+            "category_hash": hashT,
         }
+        # return render(request, "test.html", context)
         return render(request, "dashboard.html", context)
 
 
@@ -150,7 +168,7 @@ def edit_category(request, category_id):
     context = {
         "this_category": Category.objects.get(id=category_id),
         "admin": User.objects.get(email=request.session['log_email']),
-        "avg": avg,
+        "avg": "avg",
     }
     return render(request, "admin_edit_category.html", context)
 
