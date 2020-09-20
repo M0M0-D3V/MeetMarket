@@ -29,7 +29,8 @@
       {% if user_admin == True %}
       <a href="{% url 'item:my_edit_item' item.id %}" role="button" class="btn btn-outline-secondary btn-sm">Edit</a><a
         href="{% url 'item:my_delete_item' item.id %}" role="button"
-        class="btn btn-outline-secondary btn-sm">Delete</a>{% endif %}
+        class="btn btn-outline-secondary btn-sm">Delete</a>
+      {% endif %}
     </p>
     {% endfor %}
   </div>
