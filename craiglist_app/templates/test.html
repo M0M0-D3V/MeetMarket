@@ -27,9 +27,16 @@
       >
     </h4>
 
-    {% for item in category.items.all %}
+    {% for item in categories.items.all %}
+    <p class="form-control">
+      {%for image in item.images.all %}
+      <img class="img-fluid thumbnail" src="{{img.img.url}}" />
+      {% endfor %}
+    </p>
+
     <p>IDX: {{ item.name }}</p>
-    {% endif %} {% endfor %} {% endfor %}
+    {% endfor %}
   </div>
+  {% endif %} {% endfor %}
 </div>
 {% endblock %}
