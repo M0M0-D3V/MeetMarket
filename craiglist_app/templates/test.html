@@ -27,14 +27,27 @@
       >
     </h4>
 
-    {% for item in categories.items.all %}
+    {% for item in category.items.all %}
     <p class="form-control">
-      {%for image in item.images.all %}
-      <img class="img-fluid thumbnail" src="{{img.img.url}}" />
+      {% for image in item.images.all %}
+      <img class="img-fluid thumbnail" src="{{image.image.url}}" />
       {% endfor %}
+      <a href="{% url 'item:my_item_info' item.id %}">{{item.name}}</a> -
+      ${{item.price}}<br />
+      {% if user_admin == True %}
+      <a
+        href="{% url 'item:my_edit_item' item.id %}"
+        role="button"
+        class="btn btn-outline-secondary btn-sm"
+        >Edit</a
+      ><a
+        href="{% url 'item:my_delete_item' item.id %}"
+        role="button"
+        class="btn btn-outline-secondary btn-sm"
+        >Delete</a
+      >
+      {% endif %}
     </p>
-
-    <p>IDX: {{ item.name }}</p>
     {% endfor %}
   </div>
   {% endif %} {% endfor %}
