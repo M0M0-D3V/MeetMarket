@@ -118,8 +118,8 @@ def successful_log_in(request):
             "categories": categories,
             "category_hash": hashT,
         }
-        return render(request, "test.html", context)
-        # return render(request, "dashboard.html", context)
+        # return render(request, "test.html", context)
+        return render(request, "dashboard.html", context)
 
 
 def direct_message(request):

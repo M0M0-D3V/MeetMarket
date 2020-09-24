@@ -17,16 +17,14 @@
     <p class="lead">Recently added to categories:</p>
   </div>
 </div>
-
 <div class="row">
-  {% for category in category_hash %} {% if category.id == categories.0.id %}
+  {% for category in category_hash %}
   <div class="col-md-4 form-group">
     <h4 class="form-control">
-      <a href="{% url 'item:my_category_page' categories.0.id %}"
-        >{{categories.0.name}}</a
+      <a href="{% url 'item:my_category_page' category.id %}"
+        >{{category.name}}</a
       >
     </h4>
-
     {% for item in category.items.all %}
     <p class="form-control">
       {% for image in item.images.all %}
@@ -50,6 +48,6 @@
     </p>
     {% endfor %}
   </div>
-  {% endif %} {% endfor %}
+  {% endfor %}
 </div>
 {% endblock %}
