@@ -8,46 +8,23 @@
 </h1>
 <hr />
 <h4>Update User:</h4>
-<form
-  action="{% url 'login:my_admin_post_edit_user' edit_user.id %}"
-  method="POST"
->
+<form action="{% url 'login:my_admin_post_edit_user' edit_user.id %}" method="POST">
   {% csrf_token %}
   <div class="form-group">
     <label for="first_name">First Name</label>
-    <input
-      type="text"
-      class="form-control"
-      name="first_name"
-      value="{{edit_user.first_name}}"
-    />
+    <input type="text" class="form-control" name="first_name" value="{{edit_user.first_name}}" />
   </div>
   <div class="form-group">
     <label for="last_name">Last Name</label>
-    <input
-      type="text"
-      class="form-control"
-      name="last_name"
-      value="{{edit_user.last_name}}"
-    />
+    <input type="text" class="form-control" name="last_name" value="{{edit_user.last_name}}" />
   </div>
   <div class="form-group">
     <label for="email">Email Address</label>
-    <input
-      type="email"
-      class="form-control"
-      name="email"
-      value="{{edit_user.email}}"
-    />
+    <input type="email" class="form-control" name="email" value="{{edit_user.email}}" />
   </div>
   <div class="form-group">
     <label for="location">Location</label>
-    <input
-      type="text"
-      class="form-control"
-      name="location"
-      value="{{edit_user.location}}"
-    />
+    <input type="text" class="form-control" name="location" value="{{edit_user.location}}" />
   </div>
   <div class="form-group">
     <label for="admin">Is Admin?</label>
@@ -57,17 +34,7 @@
     </select>
   </div>
   <button type="submit" class="btn btn-primary">Edit</button>
-  <a
-    href="{% url 'login:my_admin_controls' %}"
-    class="btn btn-info"
-    role="button"
-    >Cancel</a
-  >
-  <a
-    href="{% url 'login:my_admin_delete_category' this_category.id %}"
-    class="btn btn-danger"
-    role="button"
-    >Delete</a
-  >
+  <a href="{% url 'login:my_admin_controls' %}" class="btn btn-info" role="button">Cancel</a>
+  <a href="{% url 'login:my_delete_user' edit_user.id %}" class="btn btn-danger" role="button">Delete</a>
 </form>
 {% endblock %}
