@@ -12,53 +12,34 @@
   {% endfor %}
 </ul>
 {% endif %}
-<form
-  action="{% url 'item:my_post_edit_item' this_item.id %}"
-  method="POST"
-  enctype="multipart/form-data"
->
+<form action="{% url 'item:my_post_edit_item' this_item.id %}" method="POST" enctype="multipart/form-data">
   {% csrf_token %}
   <div class="form-group">
     <label for="name">Name of Listing:</label>
-    <input
-      type="text"
-      class="form-control"
-      name="name"
-      value="{{this_item.name}}"
-    />
+    <input type="text" class="form-control" name="name" value="{{this_item.name}}" />
     <label for="price">Price:</label>
-    <input
-      type="number"
-      step="0.01"
-      class="form-control"
-      name="price"
-      value="{{this_item.price}}"
-    />
+    <input type="number" step="0.01" class="form-control" name="price" value="{{this_item.price}}" />
     <label for="description">Description:</label>
     <textarea name="description" class="form-control">
-{{this_item.description}}</textarea
-    >
+{{this_item.description}}</textarea>
     <label for="location">Location:</label>
-    <input
-      type="text"
-      class="form-control"
-      name="location"
-      placeholder="Current location of the item"
-      value="{{this_item.location}}"
-    />
+    <input type="text" class="form-control" name="location" placeholder="Current location of the item"
+      value="{{this_item.location}}" />
     <label for="condition">Condition:</label>
-    <input
-      type="text"
-      class="form-control"
-      name="condition"
-      placeholder="Mint, Great, Fair, Bad, etc.."
-      value="{{this_item.condition}}"
-    />
+    <!-- <input type="text" class="form-control" name="condition" placeholder="Mint, Great, Fair, Bad, etc.." -->
+    <!-- value="{{this_item.condition}}" /> -->
+    <select name="condition" class="custom-select mr-sm-2">
+      <option value="{{this_item.condition}}">{{this_item.condition}}</option>
+      <option value="Mint">Mint</option>
+      <option value="New w/Tags">New w/Tags</option>
+      <option value="New w/o Tags">New w/o Tags</option>
+      <option value="Great">Great</option>
+      <option value="Fair">Fair</option>
+      <option value="Used">Used</option>
+    </select>
     <label for="category">Category:</label>
     <select name="category" class="custom-select mr-sm-2">
-      <option value="{{this_item.category.name}}"
-        >{{this_item.category.name}}</option
-      >
+      <option value="{{this_item.category.name}}">{{this_item.category.name}}</option>
       {% for category in all_categories %}
       <option value="{{category.name}}">{{category.name}}</option>
       {% endfor %}
@@ -68,19 +49,10 @@
     <input type="file" name="images" value="{{image}}" />
     {% endif %}
     <button type="submit" class="btn btn-primary">Edit</button>
-    <a
-      href="{% url 'login:my_successful_log_in' %}"
-      class="btn btn-info"
-      role="button"
-      >Cancel</a
-    >
+    <a href="{% url 'login:my_successful_log_in' %}" class="btn btn-info" role="button">Cancel</a>
     {% if this_user.admin == True %}
-    <a
-      href="{% url 'item:my_delete_item' this_item.id %}"
-      class="btn btn-danger"
-      role="button"
-      >Delete</a
-    >{% endif %}{% endif %}
+    <a href="{% url 'item:my_delete_item' this_item.id %}" class="btn btn-danger"
+      role="button">Delete</a>{% endif %}{% endif %}
   </div>
 </form>
 {% endblock %}

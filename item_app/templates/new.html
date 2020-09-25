@@ -1,13 +1,11 @@
 {% extends 'base.html' %} {% block content %}
 
-<main role="main">
-  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h1 class="display-4" style="padding: 20px; margin-top: 20px;">
-      Create New Listing
-    </h1>
-  </div>
-  <hr />
-</main>
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1 class="display-4" style="padding: 20px; margin-top: 20px;">
+    Create New Listing
+  </h1>
+</div>
+<hr />
 
 <!-- <h1>Create New Listing</h1> -->
 {% if messages %}
@@ -20,11 +18,7 @@
 </ul>
 {% endif %}
 
-<form
-  action="{% url 'item:my_create_item' %}"
-  method="POST"
-  enctype="multipart/form-data"
->
+<form action="{% url 'item:my_create_item' %}" method="POST" enctype="multipart/form-data">
   {% csrf_token %}
   <div class="form-group">
     <label for="name">Name of Listing:</label>
@@ -34,36 +28,29 @@
     <label for="description">Description:</label>
     <textarea name="description" class="form-control"></textarea>
     <label for="condition">Condition:</label>
-    <input
-      type="text"
-      class="form-control"
-      name="condition"
-      placeholder="Mint, Great, Fair, Bad, etc.."
-    />
+    <select name="condition" class="custom-select mr-sm-2">
+      <option value="Brand New" disabled selected hidden>Choose One</option>
+      <option value="Mint">Mint</option>
+      <option value="New w/Tags">New w/Tags</option>
+      <option value="New w/o Tags">New w/o Tags</option>
+      <option value="Great">Great</option>
+      <option value="Fair">Fair</option>
+      <option value="Used">Used</option>
+    </select>
     <label for="location">Location:</label>
-    <input
-      type="text"
-      class="form-control"
-      name="location"
-      placeholder="Current location of the item"
-    />
+    <input type="text" class="form-control" name="location" placeholder="Current location of the item" />
     <label for="category">Category:</label>
     <select name="category" class="custom-select mr-sm-2">
       <option value="" disabled selected hidden>Choose One</option>
       {% for category in categories %}
       <option value="{{category.name}}">{{category.name}}</option>
-      {% endfor %} </select
-    ><br />
+      {% endfor %}
+    </select><br />
     <br />
     <label for="images">Upload Image:</label>
     <input type="file" name="images" />
-    <button type="submit" class="btn btn-primary">Create</button>
-    <a
-      href="{% url 'login:my_successful_log_in' %}"
-      class="btn btn-default"
-      role="button"
-      >Cancel</a
-    >
+    <button type="submit" class="btn btn-outline-primary">Create</button>
+    <a href="{% url 'login:my_successful_log_in' %}" class="btn btn-default btn-outline-danger" role="button">Cancel</a>
   </div>
 </form>
 {% endblock %}

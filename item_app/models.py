@@ -9,9 +9,9 @@ class ItemManager(models.Manager):
         PRICE_REGEX = re.compile(r'^[0-9.]+$')
         if not PRICE_REGEX.match(postData['price']):
             errors['price'] = "Please enter a valid price!"
-        CONDITION_REGEX = re.compile(r'^[a-zA-Z]+$')
-        if not CONDITION_REGEX.match(postData['condition']):
-            errors['condition'] = "Only letters can be used in the condition field!"
+        # CONDITION_REGEX = re.compile(r'^[a-zA-Z]+$')
+        # if not CONDITION_REGEX.match(postData['condition']):
+        #     errors['condition'] = "Only letters can be used in the condition field!"
         if len(postData['name']) < 2:
             errors['name'] = "Name must be at least 2 characters long!"
         if len(postData['description']) < 2:

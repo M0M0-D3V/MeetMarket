@@ -148,7 +148,8 @@ def admin_controls(request):
             "admin": this_user,
             "all_items": Item.objects.all(),
             "all_categories": Category.objects.all(),
-            "all_users": User.objects.all()
+            "all_users": User.objects.all(),
+            "this_user": User.objects.get(email=request.session['log_email']),
         }
         return render(request, "admin_controls.html", context)
     else:
@@ -169,6 +170,7 @@ def edit_category(request, category_id):
         "this_category": Category.objects.get(id=category_id),
         "admin": User.objects.get(email=request.session['log_email']),
         "avg": "avg",
+        "this_user": User.objects.get(email=request.session['log_email']),
     }
     return render(request, "admin_edit_category.html", context)
 
@@ -191,6 +193,7 @@ def edit_user(request, user_id):
     context = {
         "edit_user": User.objects.get(id=user_id),
         "admin": User.objects.get(email=request.session['log_email']),
+        "this_user": User.objects.get(email=request.session['log_email']),
     }
     return render(request, "admin_edit_user.html", context)
 
