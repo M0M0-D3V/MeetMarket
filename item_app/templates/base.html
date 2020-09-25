@@ -9,11 +9,11 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
   <link rel="stylesheet" type="css/text" href="{% static 'css/style.css' %}" />
+  <link href="style_reg.css" rel="stylesheet" />
 </head>
 
 <body>
   {% if request.session.log_email %}
-
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <a class="navbar-brand" href="{% url 'login:my_successful_log_in' %}">MeetMarket</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
@@ -53,7 +53,6 @@
     </div>
   </nav>
   {% endif %}
-
   <div class="content container">
     {% block content %} {% endblock %}
   </div>
