@@ -46,13 +46,15 @@
             <a class="nav-link" href="{% url 'item:my_new_item' %}">New Listing<span
                 class="sr-only">(current)</span></a>
           </li>
+          <li class="nav-item active">
+            <a class="btn btn-sm btn-outline-secondary" href="{% url 'login:my_log_out' %}">Log Out</a>
+          </li>
         </ul>
-        <a class="btn btn-sm btn-outline-secondary" href="{% url 'login:my_log_out' %}">Log Out</a>
 
-        <!-- <form class=" form-inline my-2 my-lg-0">
+        <form class=" form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form> -->
+        </form>
       </div>
     </nav>
     {% else %}
