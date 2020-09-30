@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-{% load static %}
 <html lang="en">
+
+{% load static %}
 
 <head>
   <meta charset="UTF-8" />
@@ -9,53 +10,74 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
   <link rel="stylesheet" type="css/text" href="{% static 'css/style.css' %}" />
-  <link href="style_reg.css" rel="stylesheet" />
+  <link href="{% static 'style_reg.css' %}" type="css/text" rel="stylesheet" />
 </head>
 
 <body>
-  {% if request.session.log_email %}
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="{% url 'login:my_successful_log_in' %}">MeetMarket</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <div class="container">
+    {% if request.session.log_email %}
+    <nav class="navbar navbar-expand-md justify-content-between navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="{% url 'login:my_successful_log_in' %}">MeetMarket</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+        aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          {% if this_user.admin == True %}
-        </li>
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            {% if this_user.admin == True %}
+          </li>
 
-        <li class="nav-item active">
-          <a class="nav-link" href="{% url 'login:my_admin_controls' %}">Admin Controls<span
-              class="sr-only">(current)</span></a>
-        </li>
-        {% endif %}
-        <li class="nav-item active">
-          <a class="nav-link" href="{% url 'item:my_all_listings' %}">All Item Listings<span
-              class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="{% url 'item:my_all_categories' %}">All Categories<span
-              class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="{% url 'item:my_new_item' %}">New Listing<span class="sr-only">(current)</span></a>
-        </li>
-      </ul>
-      <a class="btn btn-sm btn-outline-secondary" href="{% url 'login:my_log_out' %}">Log Out</a>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'login:my_admin_controls' %}">Admin Controls<span
+                class="sr-only">(current)</span></a>
+          </li>
+          {% endif %}
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'item:my_all_listings' %}">All Item Listings<span
+                class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'item:my_all_categories' %}">All Categories<span
+                class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'item:my_new_item' %}">New Listing<span
+                class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+        <a class="btn btn-sm btn-outline-secondary" href="{% url 'login:my_log_out' %}">Log Out</a>
 
-      <!-- <form class=" form-inline my-2 my-lg-0">
+        <!-- <form class=" form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form> -->
-    </div>
+      </div>
+    </nav>
+    {% else %}
+    <a class="btn btn-lg btn-outline-secondary" href="#" data-toggle="modal" data-target="#signin" role="button"
+      class="btn btn-lg btn-outline-secondary">Sign In</a>
+    <a class="btn btn-lg btn-outline-secondary" href="#" data-toggle="modal" data-targe="#register" role="button"
+      class="btn btn-sm btn-outline-secondary">Register</a>
+  </div>
   </nav>
   {% endif %}
   <div class="content container">
-    {% block content %} {% endblock %}
+    {% block content %}
+    {% endblock %}
   </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+  </script>
+  <script src="js/script.js"></script>
 </body>
 
 </html>

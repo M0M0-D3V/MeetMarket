@@ -1,12 +1,12 @@
 {% extends 'base.html' %} {% block content %}
-<main role="main">
-  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h1 class="display-4" style="padding: 20px; margin-top: 20px;">
-      Welcome to the Meet Market!
-    </h1>
-  </div>
-  <hr />
-</main>
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1 class="display-4" style="padding: 20px; margin-top: 20px;">
+    Welcome to the Meet Market!
+  </h1>
+</div>
+<div class="col-md-12">
+  <img id="splash" class="img-fluid rounded mx-auto d-block" src="../static/img/splash.jpg">
+</div>
 <h2 style="text-align: center;">Login</h2>
 <br />
 {% if messages %}
@@ -23,27 +23,69 @@
     {% csrf_token %}
     <div class="form-group">
       <!-- <label for="log_email">Email Address</label> -->
-      <input
-        type="email"
-        class="form-control"
-        placeholder="Email Address"
-        name="log_email"
-      />
+      <input type="email" class="form-control" placeholder="Email Address" name="log_email" />
     </div>
     <div class="form-group">
       <!-- <label for="log_pw">Password</label> -->
-      <input
-        type="password"
-        class="form-control"
-        placeholder="Password"
-        name="log_pw"
-      />
+      <input type="password" class="form-control" placeholder="Password" name="log_pw" />
     </div>
     <button type="submit" class="btn btn-primary">Login</button>
   </form>
   <br />
-  <a href="{% url 'login:my_register_page' %}"
-    >Don't have an account? Click here to register!</a
-  >
+  <a href="{% url 'login:my_register_page' %}">Don't have an account? Click here to register!</a>
 </div>
-{% endblock %}
+
+<!-- MODAL FOR REGISTER -->
+<div class="modal fade bd-example-modal-lg" id="register" tabindex="-1" role="dialog" aria-labelledby="registerTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="registerLongTitle">Register</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body row">
+        <div class="col-md-4" style="margin: auto;">
+          <form action="{% url 'login:my_register_page' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <!-- <label for="first_name">First Name</label> -->
+              <input type="text" class="form-control" placeholder="First Name" name="first_name" />
+            </div>
+            <div class="form-group">
+              <!-- <label for="last_name">Last Name</label> -->
+              <input type="text" class="form-control" placeholder="Last Name" name="last_name" />
+            </div>
+            <div class="form-group">
+              <!-- <label for="location">Location</label> -->
+              <input type="text" class="form-control" placeholder="Location" name="location" />
+            </div>
+        </div>
+        <br />
+        <div class="col-md-4" style="margin: auto">
+          <div class="form-group">
+            <!-- <label for="email">Email Address</label> -->
+            <input type="email" class="form-control" placeholder="Email Address" name="email" />
+          </div>
+          <div class="form-group">
+            <!-- <label for="password">Password</label> -->
+            <input type="password" class="form-control" placeholder="Password" name="password" />
+          </div>
+          <div class="form-group">
+            <!-- <label for="confirm_pw">Confirm Password</label> -->
+            <input type="password" class="form-control" placeholder="Confirm Password" name="confirm_pw" />
+          </div>
+          <button type="submit" class="btn btn-primary">Register!</button>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div> {% endblock %}
