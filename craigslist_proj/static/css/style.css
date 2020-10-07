@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  border: 1px dotted pink;
+  padding: 0;
+}
+
+.customSize {
+  height: 300px;
+}
+
+body {
+  margin-top: 100px;
+}
+
+h2.flagged {
+  color: red;
+}
