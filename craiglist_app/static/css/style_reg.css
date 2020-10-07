@@ -2,11 +2,6 @@
 body {
   height: 100%;
 } */
-* {
-  margin: 0;
-  padding: 0;
-  border: 1px dotted pink;
-}
 
 body {
   display: -ms-flexbox;
@@ -29,7 +24,7 @@ img#splash {
   text-align: center;
 }
 
-.form-signin {
+/* .form-signin {
   width: 100%;
   max-width: 330px;
   padding: 15px;
@@ -62,4 +57,4 @@ img#splash {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-}
+} */
