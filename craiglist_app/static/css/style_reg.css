@@ -1,23 +1,24 @@
-/* html,
-body {
-  height: 100%;
-} */
+* {
+  margin: 0;
+  padding: 0;
+  border: 1px dotted pink;
+}
 
 body {
-  display: -ms-flexbox;
+  /* display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
   align-items: center;
   padding-top: 40px;
-  padding-bottom: 40px;
+  padding-bottom: 40px; */
   background-color: #f5f5f5;
 }
 
 img#splash {
   width: 100%;
   text-align: center;
-  margin: 20px;
-  /* border: 1px solid gray; */
+  /* margin: 20px; */
+  border: 1px solid gray;
 }
 
 #reglink {
@@ -26,6 +27,7 @@ img#splash {
 
 form {
   border: none;
+  margin: 0;
 }
 /* .form-signin {
   width: 100%;

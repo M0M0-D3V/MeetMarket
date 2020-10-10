@@ -14,10 +14,6 @@ def index(request):
     return render(request, "index.html")
 
 
-def register_page(request):
-    return render(request, "register.html")
-
-
 def log_in(request):
     errors = User.objects.log_in_validator(request.POST)
     if len(errors) > 0:
@@ -39,7 +35,7 @@ def register(request):
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value)
-        return redirect('login:my_register_page')
+        return redirect('login:my_index')
     else:
         if request.method == "POST":
             first_name = request.POST['first_name']

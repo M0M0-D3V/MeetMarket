@@ -46,7 +46,7 @@
         </button>
       </div>
       <div class="modal-body row mx-auto">
-        <form action="{% url 'login:my_register_page' %}" method="POST">
+        <form action="{% url 'login:my_register' %}" method="POST">
           {% csrf_token %}
           <div class="form-group">
             <input type="text" class="form-control" placeholder="First Name" name="first_name" />

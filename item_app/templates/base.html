@@ -15,7 +15,7 @@
 </head>
 
 <body>
-  <div class="container">
+  <!-- <div class="container"> -->
     {% if request.session.log_email %}
     <nav class="navbar navbar-expand-md justify-content-between navbar-dark fixed-top bg-dark">
       <a class="navbar-brand" href="{% url 'login:my_successful_log_in' %}">MeetMarket</a>
@@ -61,18 +61,20 @@
       </div>
     </nav>
     {% else %}
+    <nav class="navbar navbar-expand-md justify-content-between navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="{% url 'login:my_successful_log_in' %}">MeetMarket</a>
     <!-- SIGN IN FORM HERE -->
     <form action="{% url 'login:my_log_in' %}" method="POST">
       {% csrf_token %}
-      <input class="form-group" type="email" class="form-control" placeholder="Email Address" name="log_email" />
-      <input class="form-group" type="password" class="form-control" placeholder="Password" name="log_pw" />
+      <input type="email" class="form-control" placeholder="Email Address" name="log_email" />
+      <input type="password" class="form-control" placeholder="Password" name="log_pw" />
       <button type="submit" class="btn btn-lg btn-outline-success">Sign In</button>
       <a class="btn btn-lg btn-outline-secondary" href="#" data-toggle="modal" data-target="#register"
       role="button">Register</a>
     </form>
+  </nav>
     
-  </div>
-</nav>
+  <!-- </div> -->
 {% endif %}
 <!-- MODAL FOR NEW ITEM -->
 <div class="modal fade bd-example-modal-lg" id="newitem" tabindex="-1" role="dialog"
