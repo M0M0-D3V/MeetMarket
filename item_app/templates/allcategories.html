@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-  <h1 class="display-4">
+  <h1 class="display-4 titleh1">
     All Categories
   </h1>
 </div>
@@ -12,7 +12,7 @@
   <div class="row">
     {% for category in all_categories %}
     <div class="card" style="width: 12rem;">
-      <div class="card-body">
+      <div class="card-body text-center categorypage">
         <a href="{% url 'item:my_category_page' category.id %}" class="card-link">{{category.name}}</a>
       </div>
     </div>

@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  border: 1px dotted pink;
 }
 
 body {
@@ -21,13 +20,25 @@ img#splash {
   border: 1px solid gray;
 }
 
-#reglink {
-  text-align: center;
+h1#reglink {
+  margin-top: 35px;
 }
 
 form {
   border: none;
   margin: 0;
+}
+button {
+  margin: 0;
+}
+h1.titleh1 {
+  margin-top: 50px;
+}
+.inline-b {
+  display: inline-block;
+}
+input.signin {
+  background-color: lightgrey;
 }
 /* .form-signin {
   width: 100%;

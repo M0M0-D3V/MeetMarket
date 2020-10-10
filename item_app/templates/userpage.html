@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+<h1 class="display-4 titleh1">
   {{user.first_name}} {{user.last_name}}
 </h1>
 <p>Member Since: {{user.created_at}}</p>
@@ -36,7 +37,7 @@
     <textarea class="form-control" name="review" cols="30" rows="10"></textarea>
   </div>
   <input type="hidden" name="user_id" value="{{user.id}}" />
-  <button type="submit" class="btn btn-primary">Post Review</button>
+  <button type="submit" class="btn btn-outline-primary btn-block">Post Review</button>
 </form>
 {% endif %}
 {% endblock %}

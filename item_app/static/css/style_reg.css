@@ -1,11 +1,6 @@
-/* html,
-body {
-  height: 100%;
-} */
 * {
   margin: 0;
   padding: 0;
-  border: 1px dotted pink;
 }
 
 body {
@@ -21,16 +16,30 @@ body {
 img#splash {
   width: 100%;
   text-align: center;
-  /* border: 1px solid gray; */
+  /* margin: 20px; */
+  border: 1px solid gray;
 }
 
-a#reglink {
-  text-align: center;
+h1#reglink {
   margin-top: 35px;
 }
+
 form {
-  margin: 0;
   border: none;
+  margin: 0;
+}
+button {
+  margin: 0;
+}
+h1.titleh1 {
+  margin-top: 50px;
+  padding: 20px;
+}
+.inline-b {
+  display: inline-block;
+}
+input.signin {
+  background-color: lightgrey;
 }
 /* .form-signin {
   width: 100%;

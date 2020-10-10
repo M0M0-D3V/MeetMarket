@@ -61,19 +61,20 @@
       </div>
     </nav>
     {% else %}
+    <!-- <nav class="navbar justify-content-between navbar-dark fixed-top bg-dark"> -->
     <!-- SIGN IN FORM HERE -->
-    <nav class="navbar navbar-expand-md justify-content-between navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="{% url 'login:my_successful_log_in' %}">MeetMarket</a>
-    <form action="{% url 'login:my_log_in' %}" method="POST">
+    <nav class="navbar">
+    <form action="{% url 'login:my_log_in' %}" method="POST" class="form-inline ml-auto my-2 my-lg-0">
       {% csrf_token %}
-      <input class="form-group" type="email" class="form-control" placeholder="Email Address" name="log_email" />
-      <input class="form-group" type="password" class="form-control" placeholder="Password" name="log_pw" />
-      <button type="submit" class="btn btn-lg btn-outline-success">Sign In</button>
-      <a class="btn btn-lg btn-outline-secondary" href="#" data-toggle="modal" data-target="#register"
+      <input type="email" class="signin mr-sm-2" placeholder="Email Address" name="log_email" />
+      <input type="password" class="signin mr-sm-2" placeholder="Password" name="log_pw" />
+      <button type="submit" class="btn btn-md btn-outline-success">Sign In</button>
+      <a class="btn btn-md btn-outline-secondary" href="#" data-toggle="modal" data-target="#register"
       role="button">Register</a>
     </form>
+  </nav>
+    
   <!-- </div> -->
-</nav>
 {% endif %}
 <!-- MODAL FOR NEW ITEM -->
 <div class="modal fade bd-example-modal-lg" id="newitem" tabindex="-1" role="dialog"

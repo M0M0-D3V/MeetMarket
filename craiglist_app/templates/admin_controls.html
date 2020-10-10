@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-  <h1 class="display-4">Welcome Admin User: {{admin.first_name}}!</h1>
+  <h1 class="display-4 titleh1">Welcome Admin User: {{admin.first_name}}!</h1>
   <p class="lead">Here to quack shift up!!</p>
 </div>
 <hr>
@@ -37,10 +37,10 @@
           <td>
             <form action="{% url 'login:my_admin_post_new_cat' %}" method="POST">
               {% csrf_token %}
-              <input type="text" name="name" placeholder="Enter new category" />
+              <input type="text" class="form-control" name="name" placeholder="Enter new category" />
           </td>
           <td>
-            <button type="submit" class="btn btn-outline-primary btn-sm">Create</button>
+            <button type="submit" class="btn-block btn btn-outline-primary btn-sm">Create</button>
           </td>
           </form>
         </tr>

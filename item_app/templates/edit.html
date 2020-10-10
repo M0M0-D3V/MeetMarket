@@ -1,6 +1,8 @@
 {% extends 'base.html' %} {% block content %} {% if this_user.admin == True %}
 
-<h1>Edit {{this_item.name}}</h1>
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 titleh1">Edit {{this_item.name}}</h1>
+</div>
 <hr />
 
 {% if messages %}

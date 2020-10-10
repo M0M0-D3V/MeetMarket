@@ -1,8 +1,9 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Welcome Admin User: {{admin.first_name}}!</h1>
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+<h1 class="display-4 titleh1">Welcome Admin User: {{admin.first_name}}!</h1>
 <p class="lead">Here to quack shift up!!</p>
-
+K/div>
 <h4>Update Category Name:</h4>
 <form
   action="{% url 'login:my_admin_post_edit_category' this_category.id %}"
