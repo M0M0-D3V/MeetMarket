@@ -20,7 +20,7 @@ def index(request):
 def new_item(request):
     categories = Category.objects.all()
     context = {
-        "categories": categories,
+        "all_categories": Category.objects.all(),
         "this_user": User.objects.get(email=request.session['log_email'])
     }
     return render(request, "new.html", context)
@@ -124,6 +124,7 @@ def item_info(request, item_id):
         "time": strftime("%m-%d-%y"),
         "images": images,
         "this_user": this_user,
+        "all_categories": Category.objects.all()
     }
     return render(request, "item_info.html", context)
 
@@ -135,6 +136,7 @@ def category_page(request, category_id):
         "category": category,
         "items_in_cat": items_in_cat,
         "this_user": User.objects.get(email=request.session['log_email']),
+        "all_categories": Category.objects.all()
     }
     return render(request, "category.html", context)
 
@@ -157,6 +159,7 @@ def user_page(request, user_id):
         "reviews": reviews,
         "avg": new,
         "this_user": User.objects.get(email=request.session['log_email']),
+        "all_categories": Category.objects.all()
     }
     return render(request, "userpage.html", context)
 
@@ -205,6 +208,7 @@ def all_listings(request):
         "user_admin": user_admin,
         "items": all_items,
         "this_user": User.objects.get(email=request.session['log_email']),
+        "all_categories": Category.objects.all()
     }
 
     return render(request, "allitems.html", context)
@@ -216,7 +220,7 @@ def all_categories(request):
     all_categories = Category.objects.all()
     context = {
         "user_admin": user_admin,
-        "categories": all_categories,
+        "all_categories": all_categories,
         "this_user": User.objects.get(email=request.session['log_email']),
     }
 

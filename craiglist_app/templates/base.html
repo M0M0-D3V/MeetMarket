@@ -48,64 +48,7 @@
               Listing<span class="sr-only">(current)</span></a>
           </li>
 
-          <!-- MODAL FOR NEW ITEM -->
-          <div class="modal fade bd-example-modal-lg" id="newitem" tabindex="-1" role="dialog"
-            aria-labelledby="registerTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="registerLongTitle">Register</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body row mx-auto">
-                  <form action="{% url 'item:my_create_item' %}" method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="form-group">
-                      <label for="name">Name of Listing:</label>
-                      <input type="text" class="form-control" name="name" />
-                      <label for="price">Price:</label>
-                      <input type="number" step="0.01" class="form-control" name="price" />
-                      <label for="description">Description:</label>
-                      <textarea name="description" class="form-control"></textarea>
-                      <label for="condition">Condition:</label>
-                      <select name="condition" class="custom-select mr-sm-2">
-                        <option value="Brand New" disabled selected hidden>Choose One</option>
-                        <option value="Mint">Mint</option>
-                        <option value="New w/Tags">New w/Tags</option>
-                        <option value="New w/o Tags">New w/o Tags</option>
-                        <option value="Great">Great</option>
-                        <option value="Fair">Fair</option>
-                        <option value="Used">Used</option>
-                      </select>
-                      <label for="location">Location:</label>
-                      <input type="text" class="form-control" name="location"
-                        placeholder="Current location of the item" />
-                      <label for="category">Category:</label>
-                      <select name="category" class="custom-select mr-sm-2">
-                        <option value="" disabled selected hidden>Choose One</option>
-                        {% for category in categories %}
-                        <option value="{{category.name}}">{{category.name}}</option>
-                        {% endfor %}
-                      </select><br />
-                      <br />
-                      <label for="images">Upload Image:</label>
-                      <input type="file" name="images" />
-                      <button type="submit" class="btn btn-outline-primary">Create</button>
-                    </div>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">
-                    Close
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- END MODAL FOR NEW ITEM -->
-
+          
           <li class=" nav-item active">
             <a class="btn btn-sm btn-outline-secondary" href="{% url 'login:my_log_out' %}">Log Out</a>
           </li>
@@ -125,18 +68,75 @@
       <input class="form-group" type="password" class="form-control" placeholder="Password" name="log_pw" />
       <button type="submit" class="btn btn-lg btn-outline-success">Sign In</button>
       <a class="btn btn-lg btn-outline-secondary" href="#" data-toggle="modal" data-target="#register"
-        role="button">Register</a>
+      role="button">Register</a>
     </form>
-
+    
   </div>
-  </nav>
-  {% endif %}
-  <div class="content container">
-    {% block content %}
-    {% endblock %}
+</nav>
+{% endif %}
+<!-- MODAL FOR NEW ITEM -->
+<div class="modal fade bd-example-modal-lg" id="newitem" tabindex="-1" role="dialog"
+  aria-labelledby="newitemTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newitemLongTitle">New Listing</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body row mx-auto">
+        <form action="{% url 'item:my_create_item' %}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="name">Name of Listing:</label>
+            <input type="text" class="form-control" name="name" />
+            <label for="price">Price:</label>
+            <input type="number" step="0.01" class="form-control" name="price" />
+            <label for="description">Description:</label>
+            <textarea name="description" class="form-control"></textarea>
+            <label for="condition">Condition:</label>
+            <select name="condition" class="custom-select mr-sm-2">
+              <option value="Brand New" disabled selected hidden>Choose One</option>
+              <option value="Mint">Mint</option>
+              <option value="New w/Tags">New w/Tags</option>
+              <option value="New w/o Tags">New w/o Tags</option>
+              <option value="Great">Great</option>
+              <option value="Fair">Fair</option>
+              <option value="Used">Used</option>
+            </select>
+            <label for="location">Location:</label>
+            <input type="text" class="form-control" name="location"
+              placeholder="Current location of the item" />
+            <label for="category">Category:</label>
+            <select name="category" class="custom-select mr-sm-2">
+              <option value="" disabled selected hidden>Choose One</option>
+              {% for category in all_categories %}
+              <option value="{{category.name}}">{{category.name}}</option>
+              {% endfor %}
+            </select><br />
+            <br />
+            <label for="images">Upload Image:</label>
+            <input type="file" name="images" />
+            <button type="submit" class="btn btn-outline-primary btn-block">Create</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
   </div>
-  </div>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+</div>
+<!-- END MODAL FOR NEW ITEM -->
+<div class="content container">
+  {% block content %}
+  {% endblock %}
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
   </script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"

@@ -117,6 +117,7 @@ def successful_log_in(request):
             "this_user": User.objects.get(email=request.session['log_email']),
             "categories": categories,
             "category_hash": hashT,
+            "all_categories": Category.objects.all()
         }
         # return render(request, "test.html", context)
         return render(request, "dashboard.html", context)
@@ -125,6 +126,7 @@ def successful_log_in(request):
 def direct_message(request):
     context = {
         "this_user": User.objects.get(email=request.session['log_email']),
+        "all_categories": Category.objects.all()
     }
     return render(request, "direct_message.html", context)
 
@@ -150,6 +152,7 @@ def admin_controls(request):
             "all_categories": Category.objects.all(),
             "all_users": User.objects.all(),
             "this_user": User.objects.get(email=request.session['log_email']),
+            "all_categories": Category.objects.all()
         }
         return render(request, "admin_controls.html", context)
     else:
@@ -171,6 +174,7 @@ def edit_category(request, category_id):
         "admin": User.objects.get(email=request.session['log_email']),
         "avg": "avg",
         "this_user": User.objects.get(email=request.session['log_email']),
+        "all_categories": Category.objects.all()
     }
     return render(request, "admin_edit_category.html", context)
 
@@ -194,6 +198,7 @@ def edit_user(request, user_id):
         "edit_user": User.objects.get(id=user_id),
         "admin": User.objects.get(email=request.session['log_email']),
         "this_user": User.objects.get(email=request.session['log_email']),
+        "all_categories": Category.objects.all()
     }
     return render(request, "admin_edit_user.html", context)
 

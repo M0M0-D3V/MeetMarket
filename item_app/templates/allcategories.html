@@ -10,7 +10,7 @@
 <!-- <h1>All Categories</h1> -->
 <div class="container">
   <div class="row">
-    {% for category in categories %}
+    {% for category in all_categories %}
     <div class="card" style="width: 12rem;">
       <div class="card-body">
         <a href="{% url 'item:my_category_page' category.id %}" class="card-link">{{category.name}}</a>

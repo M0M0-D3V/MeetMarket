@@ -42,7 +42,7 @@
     <label for="category">Category:</label>
     <select name="category" class="custom-select mr-sm-2">
       <option value="" disabled selected hidden>Choose One</option>
-      {% for category in categories %}
+      {% for category in all_categories %}
       <option value="{{category.name}}">{{category.name}}</option>
       {% endfor %}
     </select><br />

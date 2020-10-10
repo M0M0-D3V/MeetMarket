@@ -22,14 +22,16 @@ img#splash {
   width: 100%;
   text-align: center;
   margin: 20px;
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
 }
 
 a#reglink {
   text-align: center;
   margin-top: 35px;
 }
-
+form {
+  border: none;
+}
 /* .form-signin {
   width: 100%;
   max-width: 330px;
