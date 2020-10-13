@@ -1,3 +1,5 @@
+# UPDATE! This Project is now deployed on AWS EC2 platform and ready for demoing!  ...there are a few bugs I'm trying to work out, but please check it out!!
+
 ![alt text](https://m0m0-d3v.github.io/img/meetmarketprezi.png "meetmarketprezi")
 
 # This is a group project about improving Craigslist
