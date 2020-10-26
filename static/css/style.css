@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.customSize {
+  height: 300px;
+}
+
+body {
+  margin-top: 100px;
+}
+
+h2.flagged {
+  color: red;
+}
+h1.titleh1 {
+  margin-top: 50px;
+  padding: 20px;
+}

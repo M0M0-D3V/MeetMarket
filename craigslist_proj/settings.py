@@ -42,7 +42,12 @@ LOGGING = {
    },
 }
 
+<<<<<<< HEAD
 ALLOWED_HOSTS = ['52.201.245.62']
+=======
+
+ALLOWED_HOSTS = []
+>>>>>>> 6f5c994080fb0fb8b09203f9245267113e427332
 
 
 # Application definition
@@ -137,6 +142,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
