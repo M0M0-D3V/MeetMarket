@@ -23,31 +23,27 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'nrgm1odsq&%$jhppl)(z(5*-o_sskrxa!8*-gpgrud&b+1ie+0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # ADDING NOTE FOR LOGGING ERRORS
-LOGGING = {
-   'version': 1,
-   'disable_existing_loggers': False,
-   'handlers': {
-       'console': {
-           'class': 'logging.StreamHandler',
-       },
-   }, 
-   'loggers': {
-       'django': {
-           'handlers': ['console'],
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
-       },
-   },
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['console'],
+#             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+#         },
+#     },
+# }
 
-<<<<<<< HEAD
-ALLOWED_HOSTS = ['52.201.245.62']
-=======
 
 ALLOWED_HOSTS = []
->>>>>>> 6f5c994080fb0fb8b09203f9245267113e427332
 
 
 # Application definition
@@ -148,5 +144,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
