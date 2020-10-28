@@ -12,6 +12,30 @@
 <div class="row">
   {% for item in items %}
   <div class="card col-md-3">
+  {% for image in item.images.all %}
+    <img src="{{image.image.url}}" class="img-fluid card-img-top" height="200px" width="200px"/>
+    <div class="card-body">
+      <a href="{% url 'item:my_item_info' item.id %}"><h5 class="card-title">{{item.name}}</h5></a>
+      <p class="card-text">{{item.description}}</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated {{item.updated_at}}</small>
+      {% if user_admin == True %}
+      <div class="btn-group">
+        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
+<div class="row">
+  {% for item in items %}
+  <div class="card col-md-3">
     {% for image in item.images.all %}
       <img class="img-fluid" src="{{image.image.url}}" width="200px" height="200px" />
     {% endfor %}
@@ -20,30 +44,6 @@
   </div>
   {% endfor %}
 </div>
-
-{% endblock %}
-
-<div class="card-deck">
-  {% for item in items %} {% for image in item.images.all %}
-  <div class="card col-md-3">
-    <img src="{{image.image.url}}" class="card-img-top" />
-    <div class="card-body">
-      <h5 class="card-title">{{item.name}}</h5>
-      <p class="card-text">{{item.description}}</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated {{item.created_at}}</small>
-      <div class="btn-group">
-        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-  {% endfor %}
-</div>
-
-
 <!--
   <div class="card">
     <img src="..." class="card-img-top" alt="...">

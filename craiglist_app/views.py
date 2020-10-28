@@ -19,7 +19,8 @@ def log_in(request):
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value)
-        return redirect('login:my_index')
+        return render(request, "index.html")
+        # return redirect('login:my_index')
     else:
         if request.method == "POST":
             log_email = request.POST['log_email']
