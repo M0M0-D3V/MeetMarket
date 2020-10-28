@@ -210,7 +210,6 @@ def all_listings(request):
         "this_user": User.objects.get(email=request.session['log_email']),
         "all_categories": Category.objects.all()
     }
-
     return render(request, "allitems.html", context)
 
 
@@ -223,7 +222,6 @@ def all_categories(request):
         "all_categories": all_categories,
         "this_user": User.objects.get(email=request.session['log_email']),
     }
-
     return render(request, "allcategories.html", context)
 
 

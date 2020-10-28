@@ -18,3 +18,7 @@ h2.flagged {
 .categorypage {
   background-color: lightsalmon !important;
 }
+
+.card {
+  width: 12rem;
+}
