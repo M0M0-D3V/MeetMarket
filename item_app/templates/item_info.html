@@ -1,15 +1,13 @@
-{% extends 'base.html' %} {% block content %}
-
-<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-  <h1 class="display-4">Item Details</h1>
-  <!-- <hr /> -->
-  {% if item.flag == True %}
+{% extends 'base.html' %} {% block content %} {% if item.flag == True %}
+<div class="row">
+  <h2 class="flagged">!!ITEM HAS BEEN FLAGGED FOR ABUSE!!</h2>
+</div>
+{% endif %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto">
+  <h1 class="display-4 text-center">Item Details</h1>
+  <hr />
   <div class="row">
-    <h2 class="flagged">!!ITEM HAS BEEN FLAGGED FOR ABUSE!!</h2>
-    {% endif %}
-  </div>
-  <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-4">
       {% for image in images %}
       <img class="img-fluid" src="{{image.image.url}}" />
 
@@ -17,7 +15,9 @@
       <h2>{{item.name}}</h2>
       <p>
         Posted By:
-        <a href="{% url 'item:my_user_page' item.user.id %}">{{item.user.first_name}} {{item.user.last_name}}</a>
+        <a href="{% url 'item:my_user_page' item.user.id %}"
+          >{{item.user.first_name}} {{item.user.last_name}}</a
+        >
       </p>
       <p>Posted On: {{item.created_at}}</p>
       <p>Description: {{item.description}}</p>
@@ -25,14 +25,25 @@
       <p>Price: ${{item.price}}</p>
       <p>
         Category:
-        <a href="{% url 'item:my_category_page' item.category.id %}">{{item.category.name}}</a>
+        <a href="{% url 'item:my_category_page' item.category.id %}"
+          >{{item.category.name}}</a
+        >
       </p>
       <p>
-        <span><a href="{% url 'item:my_flag_item' item.id %}" class="btn btn-outline-danger btn-sm"
-            role="button">flag</a></span>
+        <span
+          ><a
+            href="{% url 'item:my_flag_item' item.id %}"
+            class="btn btn-outline-danger btn-sm"
+            role="button"
+            >flag</a
+          ></span
+        >
       </p>
       {% if this_user.admin == True %}
-      <form action="{% url 'item:my_admin_flag_control' item.id %}" method="POST">
+      <form
+        action="{% url 'item:my_admin_flag_control' item.id %}"
+        method="POST"
+      >
         Admin Flag Controls {% csrf_token %}
         <select name="flag">
           <option value="False">False</option>
@@ -41,48 +52,62 @@
         <button class="btn btn-outline-default btn-sm">Update</button>
       </form>
       {% endif %}
-      <!-- <hr /> -->
     </div>
 
-    <div class="col-md-4">
-      <form action="{% url 'item:my_post_message' %}" method="POST">
+    <div class="col-md-4 messages">
+      <form
+        action="{% url 'item:my_post_message' %}"
+        method="POST"
+        class="messages"
+      >
         {% csrf_token %}
-        <!-- <div class="form-group"> -->
-        <label for="message">Post a Message:</label>
-        <textarea class="form-control" name="message" cols="30" rows="5"></textarea>
+        <label for="message">Leave a Message:</label>
+        <textarea
+          class="form-control"
+          name="message"
+          cols="30"
+          rows="4"
+        ></textarea>
         <input type="hidden" name="user_id" value="{{user_id}}" />
         <input type="hidden" name="item_id" value="{{item.id}}" />
-        <!-- </div> -->
         <button type="submit" class="btn btn-outline-primary btn-sm">
           Post Message
         </button>
       </form>
       {% for message in messages reversed %}
-      <h4>
-        {{message.user.first_name}} {{message.user.last_name}} - {{time}}
-      </h4>
-      <p>{{message.message}}</p>
-      {% for comment in message.comments.all %}
-      <h6>
-        {{comment.user.first_name}} {{comment.user.last_name}} -
-        {{comment.comment}}
-      </h6>
+      <div class="messages">
+        <h4>
+          {{message.user.first_name}} {{message.user.last_name}} - {{time}}
+        </h4>
+        <p>{{message.message}}</p>
+        {% for comment in message.comments.all %}
+        <h6 class="comments">
+          {{comment.user.first_name}} {{comment.user.last_name}} -
+          {{comment.comment}}
+        </h6>
+        {% endfor %}
+        <form action="{% url 'item:my_post_comment' %}" method="POST">
+          {% csrf_token %}
+          <label for="comment">Write a comment for this message...</label>
+          <br />
+          <textarea
+            class="form-control"
+            name="comment"
+            cols="30"
+            rows="2"
+          ></textarea>
+          <br />
+          <input type="hidden" name="messageid" value="{{message.id}}" />
+          <input type="hidden" name="userid" value="" />
+          <input type="hidden" name="itemid" value="{{item.id}}" />
+          <button type="submit" class="btn btn-outline-primary btn-sm">
+            Post Comment
+          </button>
+        </form>
+      </div>
       {% endfor %}
-      <form action="{% url 'item:my_post_comment' %}" method="POST">
-        {% csrf_token %}
-        <!-- <div class="form-group"> -->
-        <label for="comment">Post a Comment</label> <br />
-        <textarea class="form-control" name="comment" cols="40" rows="3"></textarea>
-        <br />
-        <input type="hidden" name="messageid" value="{{message.id}}" />
-        <input type="hidden" name="userid" value="" />
-        <input type="hidden" name="itemid" value="{{item.id}}" />
-        <!-- </div> -->
-        <button type="submit" class="btn btn-outline-primary btn-sm">
-          Post Comment
-        </button>
-      </form>
     </div>
+    <div class="col-md-4 google-map">Google Map placeholder here</div>
   </div>
 </div>
-{% endfor %}{% endblock %}
+{% endblock %}

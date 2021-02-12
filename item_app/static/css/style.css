@@ -22,3 +22,18 @@ h2.flagged {
 .card {
   width: 12rem;
 }
+
+.messages {
+  height: 60%;
+  overflow: scroll;
+}
+.comments {
+  margin-left: 20px;
+}
+
+.google-map {
+  border: 0.5px solid black;
+}
+.margin-bottom {
+  margin-bottom: 10px;
+}
