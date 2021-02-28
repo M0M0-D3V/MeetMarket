@@ -14,7 +14,22 @@ body {
 h2.flagged {
   color: red;
 }
-h1.titleh1 {
-  margin-top: 50px;
-  padding: 20px;
+.categorypage {
+  background-color: lightsalmon !important;
+}
+
+.card {
+  width: 12rem;
+}
+
+.messages {
+  height: 60%;
+  overflow: scroll;
+}
+.comments {
+  margin-left: 20px;
+}
+
+.google-map {
+  border: 0.5px solid black;
 }
